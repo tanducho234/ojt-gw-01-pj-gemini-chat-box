@@ -6,18 +6,29 @@ dotenv.config();
 const secretKey = process.env.JWT_SECRET;
 
 function authMiddleware(req, res, next) {
-  const token = req.header("Authorization");
-
-  if (!token) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-
   try {
-    const decoded = jwt.verify(token.replace("Bearer ", ""), secretKey);
+    const token = req.cookies.jwt;
+    console.log("token authMiddleware", token);
+    
+    // Check if token exists
+    if (!token) {
+      return res.redirect("/login"); // Return here to prevent further execution
+    }
+    
+    // Verify token
+    const decoded = jwt.verify(token, secretKey);
+
+    // If token is valid, attach decoded user data to request object for further use
     req.user = decoded;
+
+    // Call next middleware
     next();
-  } catch (err) {
-    return res.status(403).json({ message: "Invalid token" });
+  } catch (error) {
+    console.log("authMiddleware", error);
+    
+    // If token is invalid, clear cookie and redirect
+    res.clearCookie("jwt"); // Clear the cookie
+    return res.redirect("/login"); // Return here to prevent further execution
   }
 }
 

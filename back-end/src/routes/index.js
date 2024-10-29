@@ -19,7 +19,7 @@ router.get('/logout', (req, res) => {
 
 router.use('/users', authMiddleware, userRoutes);
 //chatbox route
-router.use('/chat', authMiddleware, chatRoutes);
+router.use('/chat',authMiddleware, chatRoutes);
 
 
 
