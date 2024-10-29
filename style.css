@@ -342,3 +342,54 @@ body.hide-header .header {
     margin-top: 0.5rem;
   }
 }
+
+/* strong {
+  font-weight: bold;
+  font-size: 18px;
+} */
+
+/* code {
+  background-color: #848484;  
+  border: 1px solid #aee025;     
+  padding: 2px 4px;          
+  border-radius: 4px;      
+  font-family: monospace;  
+}
+
+.code-block {
+  background-color: #b7ff02; 
+  border: 1px solid #ff1900; 
+  padding: 10px; 
+  border-radius: 5px;
+  overflow-x: auto;
+  white-space: pre; 
+  font-family: monospace; 
+} */
+
+
+#chat-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.message {
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.user-message {
+  background-color: #d1e7dd;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.model-message {
+  background-color: #f1f1f1;
+  align-self: flex-start;
+}
