@@ -318,7 +318,7 @@ const fetchSuggestionsFromGemini = async (messageHistory) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         contents: messageHistory,
-        prompt: "Provide suggestions for the next question the user might ask."
+        // prompt: "Provide suggestions for the next question the user might ask."
       }),
     });
 
