@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    
+}
+
+body {
+    max-width: 1024px; 
+    min-height: 500px; 
+    margin: 0 auto; 
+    padding: 10px; 
+    color: #fff;
+    background-image: url('img/background.jpg');
+    background-size: cover;
+    background-position: center;
+   
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0; 
+    width: 100%; 
+}
+
+.logo img {
+    width: 205px;
+    height: 63px;
+    position: absolute;
+    top: 15px; 
+    left: 15px;
+    opacity: 1; 
+}
+
+nav {
+    display: flex; /* Sử dụng flexbox để căn chỉnh các nút */
+    justify-content: flex-end; /* Căn nút bên phải */
+    margin-left: 1050px; 
+}
+
+nav button {
+    width: 192px; /* Chiều rộng cố định */
+    height: 35.86px; /* Chiều cao cố định */
+    padding: 8px 16px; /* Khoảng cách bên trong nút */
+    border: 1px solid #ffffff; /* Viền màu trắng */
+    background: transparent; /* Nền trong suốt */
+    color: #fff; /* Màu chữ trắng */
+    cursor: pointer; /* Đổi con trỏ thành hình bàn tay khi di chuột qua nút */
+    margin-left: 10px; /* Khoảng cách bên trái giữa các nút */
+}
+
+
+.login-btn {
+    width: 83.07px; /* Chiều rộng cố định */
+    height: 35.86px; /* Chiều cao cố định */
+    border-radius: 5px; /* Bo tròn các góc */
+    padding: 8px 16px; /* Khoảng cách bên trong */
+    background-color: transparent; /* Nền trong suốt */
+    color: #fff; /* Màu chữ */
+    border: 1.5px solid #fff; /* Viền trắng 1.5px */
+    font-family: Outfit; /* Font chữ */
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: 500; /* Độ dày chữ */
+    line-height: 20.16px; /* Chiều cao dòng */
+    letter-spacing: 0.02em; /* Khoảng cách giữa các ký tự */
+    text-align: center; /* Căn giữa văn bản */
+    cursor: pointer; /* Đổi con trỏ thành hình bàn tay khi di chuột qua nút */
+    transition: background-color 0.3s, border-color 0.3s; /* Hiệu ứng chuyển màu nền và viền */
+}
+
+/* Thêm hiệu ứng hover */
+.login-btn:hover {
+    background-color: #0A4E7C; /* Nền hơi mờ khi hover */
+}
+
+
+
+.signup-btn {
+    background-color: #042A49;
+    border: none;
+    border-radius: 5px;
+    width: 95.07px;   /* Set the width */
+    height: 35.86px;  /* Set the height */
+    font-family: Outfit;            /* Set the font family */
+    font-size: 16px;                /* Set the font size */
+    font-weight: 500;               /* Set the font weight */
+    line-height: 20.16px;           /* Set the line height */
+    letter-spacing: 0.02em;         /* Set the letter spacing */
+    text-align: center;             /* Center the text */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.signup-btn:hover {
+    background-color: #0A4E7C; /* Change background color on hover */
+}
+
+.hero {
+    width: 100%; /* Chiều rộng cố định */
+    height: 253px; /* Chiều cao cố định */
+    text-align: center; /* Căn giữa văn bản */
+    padding: 40px 20px; /* Khoảng cách padding: 40px trên và dưới, 20px trái và phải */
+}
+
+
+.hero h1 {
+    font-family: 'Outfit', sans-serif; /* Sử dụng font Outfit */
+    font-weight: 500; /* Độ dày chữ là 500 */
+    font-size: 42.67px; /* Kích thước chữ là 42.67px */
+    line-height: 53.76px; /* Chiều cao dòng là 53.76px */
+    color: #2179A9; /* Màu chữ */
+}
+
+.hero h1 span {
+    font-family: 'Outfit', sans-serif; /* Sử dụng font Outfit */
+    font-size: 51.2px; /* Kích thước chữ là 51.2px */
+    font-weight: 500; /* Độ dày chữ là 500 */
+    line-height: 64.51px; /* Chiều cao dòng là 64.51px */
+    text-align: right; /* Căn chỉnh văn bản bên phải */
+    color: #fff; /* Màu chữ trắng */
+}
+
+
+.hero p {
+    margin: 10px 0; /* Khoảng cách trên và dưới là 10px */
+    width: 100%px; /* Chiều rộng cố định là 628.33px */
+    height: 48px; /* Chiều cao cố định là 48px */
+    font-family: 'Poppins', sans-serif; /* Sử dụng font Poppins */
+    font-size: 16px; /* Kích thước chữ là 16px */
+    font-weight: 400; /* Độ dày chữ là 400 */
+    line-height: 24px; /* Chiều cao dòng là 24px */
+    text-align: center; /* Căn giữa văn bản */
+    color: #8C8C8C; 
+}
+
+.hero p span{
+    color: #fff;
+}
+
+.get-started-btn {
+    width: 177px; /* Chiều rộng cố định */
+    height: 39px; /* Chiều cao cố định */
+    padding: 0; /* Khoảng cách bên trong */
+    background: #003E6080; /* Màu nền với độ trong suốt */
+    color: #fff; /* Màu chữ */
+    border: 1.5px solid #00679F; /* Viền 1.5px, kiểu solid, màu #00679F */
+    border-radius: 5px; /* Bo tròn các góc */
+    font-family: Poppins, sans-serif;  /* Font chữ */
+    font-size: 14px; /* Kích thước chữ */
+    font-weight: 700; /* Độ dày chữ */
+    line-height: 21px; /* Chiều cao dòng */
+    text-align: center; /* Căn giữa văn bản */
+    cursor: pointer; /* Đổi con trỏ thành hình bàn tay khi di chuột qua nút */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền và màu chữ khi hover */
+}
+
+/* Thêm hiệu ứng hover */
+.get-started-btn:hover {
+    background: rgba(0, 62, 96, 0.9); /* Màu nền thay đổi khi hover */
+    color: #ffffff; /* Màu chữ thay đổi khi hover (nếu cần) */
+}
+
+
+
+
+.chatbots {
+    width: 100%; /* Chiều rộng cố định */
+    height: 250.94px; /* Chiều cao cố định */
+    padding: 40px 20px; /* Khoảng cách bên trong: 40px trên và dưới, 20px trái và phải */
+    text-align: center; /* Căn giữa nội dung văn bản */
+    
+}
+
+.chatbots h2 {
+    font-family: 'Poppins', sans-serif; /* Font chữ Poppins */
+    font-size: 22px; /* Cỡ chữ là 22px */
+    font-weight: 400; /* Độ đậm chữ là 400 (chữ bình thường) */
+    line-height: 33px; /* Chiều cao dòng là 33px */
+    text-align: left; /* Căn giữa văn bản */
+    color: #FFFFFF; /* Màu chữ là trắng */
+}
+
+
+.chatbots h2 span {
+    font-family: 'Poppins', sans-serif; /* Font chữ Poppins */
+    font-size: 22px; /* Cỡ chữ là 22px */
+    font-weight: 600; /* Độ đậm chữ là 600 (chữ đậm) */
+    line-height: 33px; /* Chiều cao dòng là 33px */
+    text-align: left; /* Căn giữa văn bản */
+    color: #FFFFFF; /* Màu chữ là trắng */
+}
+
+
+.card-container {
+    display: flex; /* Sử dụng Flexbox để bố trí phần tử con */
+    justify-content: space-between; /* Căn giữa các phần tử con với khoảng cách đều */
+    flex-wrap: wrap; /* Cho phép các phần tử con gói lại khi không đủ không gian */
+    max-width: 974.22px; /* Chiều rộng tối đa của phần tử là 974.22px */
+    gap: 14.67px; /* Khoảng cách giữa các phần tử con bên trong card */
+}
+
+.card {
+    width: 222.22px; /* Chiều rộng cố định */
+    height: 197.94px; /* Chiều cao cố định */
+    border-radius: 11.08px; /* Bo tròn các góc với bán kính 11.08px */
+    border-top: 2.67px solid #002D45; /* Viền trên của thẻ card */
+    padding: 19.69px 9.85px; /* Padding trên và dưới: 19.69px; trái và phải: 9.85px */
+    
+    background: linear-gradient(149.88deg, #011018 37.22%, #001F2F 70.43%, #001622 97.89%, #2179A9 132.38%, #0068A0 150.9%); /* Gradient nền */
+    box-shadow: 3.69px 6.46px 24px 0px #0000001F; /* Đổ bóng cho thẻ card */
+    text-align: center; /* Căn giữa nội dung văn bản trong thẻ card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Dịch chuyển nhẹ lên trên */
+    box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.3); /* Tăng cường độ bóng đổ khi hover */
+}
+
+/* Căn chỉnh card 1 và card 4 */
+.card:nth-child(1) {
+    margin-left: 0; /* Card đầu tiên không có margin bên trái */
+}
+
+.card:nth-child(4) {
+    margin-right: 0; /* Card cuối cùng không có margin bên phải */
+}
+
+
+
+
+.card h3 {
+    margin: 10px 0; /* Khoảng cách trên và dưới là 10px */
+    color: #FFFFFF; /* Màu chữ là trắng */
+    width: 202.53px; /* Chiều rộng cố định */
+    height: 27px; /* Chiều cao cố định */
+    font-family: 'Poppins', sans-serif; /* Font chữ Poppins */
+    font-size: 17.78px; /* Cỡ chữ */
+    font-weight: 600; /* Độ đậm chữ */
+    line-height: 26.67px; /* Chiều cao dòng */
+    text-align: center; /* Căn giữa văn bản */
+}
+
+
+.card p {
+    color: #B5B5B5; /* Màu chữ là xám nhạt */
+    width: 202.53px; /* Chiều rộng cố định */
+    height: 64px; /* Chiều cao cố định */
+    font-family: 'Poppins', sans-serif; /* Font chữ Poppins */
+    font-size: 10.67px; /* Cỡ chữ */
+    font-weight: 500; /* Độ đậm chữ */
+    line-height: 16px; /* Chiều cao dòng */
+    text-align: center; /* Căn giữa văn bản */
+}
+
+
+.icon {
+    width: 53.33px;
+    height: 53.33px;
+    margin: 0 auto 10px;
+    background-color: #1e90ff;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px; 
+    }
+
+    .card {
+        flex: 1 1 100%; 
+        max-width: none;
+    }
+}
