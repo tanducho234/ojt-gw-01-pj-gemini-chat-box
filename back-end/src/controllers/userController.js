@@ -71,3 +71,60 @@ module.exports.register = async function(req, res) {
         }
     }
 };
+module.exports.getProfile = async function(req, res) {
+    try {
+        // Get token from cookies
+        const token = req.cookies.jwt;
+        if (!token) {
+            return res.status(401).json({ message: 'Authorization failed' });
+        }
+        
+        // Verify token and extract userId
+        const decoded = jwt.verify(token, secretKey);
+        const user = await User.findById(decoded.userId).select('-password'); // Exclude password field
+        
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        
+        res.status(200).json(user);
+    } catch (e) {
+        errorHandler(res, e);
+    }
+};
+// Update user profile function
+module.exports.updateProfile = async function(req, res) {
+    try {
+        // Get token from cookies
+        const token = req.cookies.jwt;
+        if (!token) {
+            return res.status(401).json({ message: 'Authorization failed' });
+        }
+        
+        // Verify token and extract userId
+        const decoded = jwt.verify(token, secretKey);
+        const user = await User.findById(decoded.userId);
+        
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Update full name if provided
+        if (req.body.fullName) {
+            user.fullName = req.body.fullName;
+        }
+
+        // Update password if provided
+        if (req.body.password) {
+            const salt = bcrypt.genSaltSync(10);
+            user.password = bcrypt.hashSync(req.body.password, salt);
+        }
+
+        // Save the updated user data
+        await user.save();
+        
+        res.status(200).json({ message: 'Profile updated successfully' });
+    } catch (e) {
+        errorHandler(res, e);
+    }
+};
