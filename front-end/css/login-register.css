@@ -8,8 +8,8 @@
 }
 
 body {
-  background-color: #c9d6ff;
-  background: linear-gradient(to left, #19092e, #51287e);
+  
+  background: radial-gradient(circle, #0a0c11 0%, #0f121a 50%, #1a2735 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,7 +47,7 @@ body {
 }
 
 .container button {
-  background-color: #51287e;
+  background-color: #1a2735;
   color: #fff;
   font-size: 12px;
   padding: 10px 45px;
@@ -60,7 +60,7 @@ body {
   cursor: pointer;
 }
 .container button:hover {
-  background-color: #512da8;
+  background-color: #4561ad;
 }
 
 .container button.hidden {
@@ -69,7 +69,7 @@ body {
 }
 
 .container button.hidden:hover {
-  background-color: #512da8;
+  background-color: #4561ad;
 }
 
 .container form {
@@ -121,7 +121,7 @@ body {
   transform: translateX(100%);
   opacity: 1;
   z-index: 5;
-  animation: move 0.6s;
+  animation: move 0.8s;
 }
 
 @keyframes move {
@@ -137,20 +137,6 @@ body {
   }
 }
 
-.social-icons {
-  margin: 20px 0;
-}
-
-.social-icons a {
-  border: 1px solid #ccc;
-  border-radius: 20%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 3px;
-  width: 40px;
-  height: 40px;
-}
 
 .toggle-container {
   position: absolute;
@@ -172,7 +158,7 @@ body {
 .toggle {
   background-color: #1e0f32;
   height: 100%;
-  background: linear-gradient(to left, #19092e, #51287e);
+  background: radial-gradient(circle, #0a0c11 0%, #0f121a 50%, #1a2735 100%);
   color: #fff;
   position: relative;
   left: -100%;
@@ -202,11 +188,11 @@ body {
 }
 
 .toggle-left {
-  transform: translateX(-200%);
+  transform: translateX(-700%);
 }
 
 .container.active .toggle-left {
-  transform: translateX(0);
+  transform: translateX(0%);
 }
 
 .toggle-right {
@@ -217,3 +203,155 @@ body {
 .container.active .toggle-right {
   transform: translateX(200%);
 }
+@media (max-width: 1000px) {
+  .container {
+    width: 700px;
+    min-height: 400px;
+  }
+
+  .container p {
+    font-size: 13px;
+  }
+
+  
+}
+@media (max-width: 500px) {
+  .container {
+    width: 400px;
+    min-height: 600px;
+  }
+
+  .container p {
+    font-size: 12px;
+  }
+  .container h1 {
+    font-size: 25px;
+  }
+  .container a {
+    font-size: 12px;
+    text-align: flex;
+  }
+  .container input{
+    margin: 8px 10px;
+    padding: 10px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+    width: 150%;
+    
+  }
+  .container button {
+    padding: 10px 30px;
+    font-size: 12px;
+  }
+
+  
+}
+@media (max-width: 360px) {
+  .container button {
+    background-color: #1a2735;
+    color: #fff;
+    font-size: 10px;
+    padding: 8px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin-top: 7px;
+    cursor: pointer;
+  }
+  .toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+  }
+  
+  .container {
+    width: 320px;
+    min-height: 450px;
+  }
+  
+
+  .container p {
+    font-size: 10px;
+  }
+  .container h1{
+    font-size: 18px;
+  }
+  .container a {
+    font-size: 10px;
+    text-align: flex;
+  }
+
+  .container button {
+    padding: 4px 42px;
+    font-size: 9px;
+  }
+  .container input{
+    margin: 8px 8px;
+    padding: 10px 15px;
+    font-size: 10px;
+    border-radius: 8px;
+    width: 200%;
+    
+  }
+}
+
+@media (max-width: 300px) {
+  .container button {
+    background-color: #1a2735;
+    color: #fff;
+    font-size: 8px;
+    padding: 8px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin-top: 7px;
+    cursor: pointer;
+  }
+  .toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+  }
+  
+  .container {
+    width: 300px;
+    min-height: 400px;
+  }
+  
+
+  .container p {
+    font-size: 8px;
+  }
+  .container h1{
+    font-size: 16px;
+  }
+  .container a {
+    font-size: 10px;
+    text-align: flex;
+  }
+
+  .container button {
+    padding: 2px 40px;
+    font-size: 8px;
+  }
+  .container input{
+    margin: 8px 8px;
+    padding: 5px 10px;
+    font-size: 10px;
+    border-radius: 8px;
+    width: 220%;
+    
+  }
+}
+
+
