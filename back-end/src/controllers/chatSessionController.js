@@ -82,7 +82,8 @@ module.exports.getChatSessionByUserId = async (req, res) => {
 
     res.status(200).json(chatSessions);
   } catch (e) {
-    errorHandler(res, e);
+    console.error("Error:", e);
+    return res.status(404).json({ message: "failed getChatSessionByUserId" });
   }
 };
 
@@ -105,14 +106,13 @@ module.exports.renameChatSession = async (req, res) => {
       return res.status(404).json({ message: "Chat session not found" });
     }
 
-    res
-      .status(200)
-      .json({
-        message: "Chat session renamed successfully",
-        updatedChatSession,
-      });
+    res.status(200).json({
+      message: "Chat session renamed successfully",
+      updatedChatSession,
+    });
   } catch (e) {
-    errorHandler(res, e);
+    console.error("Error:", e);
+    return res.status(404).json({ message: "failed renameChatSession" });
   }
 };
 
@@ -129,6 +129,6 @@ module.exports.deleteChatSession = async (req, res) => {
 
     res.status(200).json({ message: "Chat session deleted successfully" });
   } catch (e) {
-    errorHandler(res, e);
-  }
+    console.error("Error:", e);
+    return res.status(404).json({ message: "failed deleteChatSession" });  }
 };
