@@ -19,14 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let isEditing = false;
 
-  fetch("http://localhost:3000/users/profile", {
+  fetch("https://sl36qhn5-3000.asse.devtunnels.ms/users/profile", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
     credentials: "include", // Ensures cookies are sent with the request
   })
     .then((response) => {
       if (response.redirected) {
-
         window.location.href = "login-register.html"; // Redirect to the URL provided in the response
         return;
       }
@@ -75,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Send POST request with updated data
-      fetch("http://localhost:3000/users/profile", {
+      fetch("https://sl36qhn5-3000.asse.devtunnels.ms/users/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

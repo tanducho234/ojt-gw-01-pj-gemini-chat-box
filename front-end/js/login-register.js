@@ -32,11 +32,14 @@ document
       const password = document.getElementById("registerPassword").value;
       const fullName = document.getElementById("registerFullName").value;
 
-      const response = await fetch("http://localhost:3000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, fullName }),
-      });
+      const response = await fetch(
+        "https://sl36qhn5-3000.asse.devtunnels.ms/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password, fullName }),
+        }
+      );
 
       const result = await response.json();
       console.log(JSON.stringify(result));
@@ -54,7 +57,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const password = document.getElementById("loginPassword").value;
 
   const response = await fetch(
-    "http://localhost:3000/login",
+    "https://sl36qhn5-3000.asse.devtunnels.ms/login",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -64,7 +67,5 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   );
 
   const result = await response.json();
-  console.log( JSON.stringify(result));
-  
-  
+  console.log(JSON.stringify(result));
 });
