@@ -374,9 +374,9 @@
 }
 
 
-.chat-session div {
-  display: flex;
+.chat-session  {
   align-items: center;
+  width: 100%;
 }
 
 .chat-session .chat-title {
@@ -389,9 +389,10 @@
 }
 
 .chat-title {
-  padding-left: 0;     /* Đặt padding bên trái bằng 0 */
-  text-align: left;    /* Đảm bảo văn bản nằm ở bên trái */
-  margin-left: 0;      /* Đặt margin bên trái bằng 0 */
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .chat-session .chat-info {
@@ -548,7 +549,7 @@
   border-radius: 15px;
   margin-top: 20px;
   padding: 20px;
-  margin-left: 250px; Đẩy nội dung chính sang phải bằng với chiều rộng sidebar
+  margin-left: 250px;
   transition: margin-left 0.3s ease-in-out; /* Hiệu ứng chuyển tiếp cho phù hợp với sidebar */
   /* background: linear-gradient(to right, #000000, #003959); */
 
@@ -571,6 +572,7 @@
 
 .send-btn {
   background-color: white;
+  width: 43px;
   border: none;
   border-radius: 50%;
   padding: 10px;
@@ -781,7 +783,9 @@ body {
   padding-left: 260px;
 }
 .chat-item{
-  padding-left: 90px;
+  padding-left: 20px;
+    padding-left: 20px;
+
 }
 .typing-indicator {
   color: #888;
@@ -811,4 +815,50 @@ body {
   80%, 100% {
     text-shadow: .25em 0 0 #888, .5em 0 0 #888;
   }
+}
+
+
+.chat-content {
+  display: flex;
+  flex:1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+
+.more-options-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color:white;
+}
+
+/* Styles for rename and delete menu */
+.options-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f1f1f1;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 5px;
+  z-index: 1;
+}
+
+.options-menu.visible {
+  display: block;
+}
+
+/* Button styles inside options menu */
+.options-menu button {
+  display: block;
+  background: transparent;
+  border: none;
+  width: 100%;
+  padding: 5px;
+  text-align: left;
+  cursor: pointer;
 }

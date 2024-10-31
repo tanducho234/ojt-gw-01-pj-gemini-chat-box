@@ -11,7 +11,25 @@ const userInput = document.getElementById('user-input');
 const chatMessages = document.getElementById('chat-messages');
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  // Toggle visibility of options menu on ellipsis button click
+  document.querySelectorAll(".more-options-btn").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+          const optionsMenu = e.target.nextElementSibling;
+          optionsMenu.classList.toggle("visible");
+          e.stopPropagation(); // Prevent this click from being caught by the document listener
+      });
+  });
 
+  // Hide options menu when clicking outside of it
+  document.addEventListener("click", function (e) {
+      document.querySelectorAll(".options-menu.visible").forEach((menu) => {
+          if (!menu.contains(e.target)) {
+              menu.classList.remove("visible");
+          }
+      });
+  });
+});
 
 function addMessage(message, isUser = true) {
   const messageDiv = document.createElement('div');
@@ -19,10 +37,8 @@ function addMessage(message, isUser = true) {
   messageDiv.textContent = message;
   chatMessages.appendChild(messageDiv);
 
-
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
-
 
 
 sendBtn.addEventListener('click', () => {
@@ -61,6 +77,46 @@ const chatHistory = [
     {
         "_id": "67208fc4adc4215255c7b951",
         "name": "renamed"
+    },
+    {
+        "_id": "67208fc4adc4215255c7b951",
+        "name": "tk an bi ngu nhu con heaaaaaaaao"
+    },
+    {
+        "_id": "67208fc4adc4215255c7b951",
+        "name": "renamed"
+    },
+    {
+        "_id": "67208fc4adc4215255c7b951",
+        "name": "renamed"
+    },
+    {
+        "_id": "67208fc4adc4215255c7b951",
+        "name": "renamed"
+    },
+    {
+        "_id": "67208fc4adc4215255c7b951",
+        "name": "renamed"
+    },
+    {
+        "_id": "67208fc4adc4215255c7b951",
+        "name": "renamed"
+    },
+    {
+        "_id": "67208fc4adc4215255c7b951",
+        "name": "renamed"
+    },
+    {
+        "_id": "67208fc4adc4215255c7b951",
+        "name": "renamed"
+    },
+    {
+        "_id": "67208fc4adc4215255c7b951",
+        "name": "renamed"
+    },
+    {
+        "_id": "67208fc4adc4215255c7b951",
+        "name": "renamed"
     }
 ];
 
@@ -93,13 +149,7 @@ function onSearchChange(value) {
     searchTerm = value;
     renderChats();
 }
-// Hàm rút gọn text
-function truncateText(text, maxLength = 20) {
-    if (text.length > maxLength) {
-        return text.substring(0, maxLength) + "...";
-    }
-    return text;
-}
+
 // Hàm render danh sách chat
 function renderChats() {
     const chatList = document.querySelector("#chat-list");
@@ -120,17 +170,18 @@ function renderChats() {
         
         // Sử dụng template string với cấu trúc HTML được cải thiện
         chatItem.innerHTML = `
-            <div class="chat-content">
-                <div class="chat-title" title="${chat.name}">
-                    <h3>${chat.name}</h3>
-                </div>
-                <div class="chat-actions">
-                    <button class="rename-btn" title="Rename chat">✎</button>
-                    <button class="delete-btn" title="Delete chat">🗑</button>
-                </div>
+        <div class="chat-content">
+            <div class="chat-title" title="${chat.name}">
+                <p>${chat.name}</p>
             </div>
-        `;
-
+            <button class="more-options-btn" title="More options">...</button>
+            <div class="options-menu">
+                <button class="rename-btn" title="Rename chat">✎ Rename</button>
+                <button class="delete-btn" title="Delete chat">🗑 Delete</button>
+            </div>
+        </div>
+    `;
+    
         chatList.appendChild(chatItem);
 
         // Thêm event listeners
@@ -146,7 +197,7 @@ function renderChats() {
 
 // Hàm đổi tên chat
 function renameChat(chatItem) {
-    const newName = prompt("Nhập tên mới cho cuộc trò chuyện:", chatItem.querySelector("h3").textContent);
+    const newName = prompt("Nhập tên mới cho cuộc trò chuyện:", chatItem.querySelector("p").textContent);
     if (newName) {
         chatItem.querySelector("h3").textContent = newName;
     }
@@ -162,29 +213,6 @@ function deleteChat(chatItem) {
         chatItem.remove();
     }
 }
-
-const typingIndicator = document.getElementById("typing-indicator");
-
-// Hiển thị "đang gõ..." khi bot chuẩn bị trả lời
-function showTypingIndicator() {
-  typingIndicator.style.display = "block";
-}
-
-// Ẩn "đang gõ..." sau khi bot trả lời
-function hideTypingIndicator() {
-  typingIndicator.style.display = "none";
-}
-
-// Khi bạn gửi câu hỏi cho bot, hiển thị hiệu ứng
-document.querySelector(".send-btn").addEventListener("click", () => {
-  showTypingIndicator();
-  
-  // Giả lập thời gian chờ của bot (sửa lại hàm này với hàm API bot của bạn)
-  setTimeout(() => {
-    hideTypingIndicator();
-    // Thêm tin nhắn bot vào giao diện
-  }, 2000); // Điều chỉnh thời gian chờ của bot
-});
 
 
 

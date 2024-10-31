@@ -1,0 +1,84 @@
+
+
+
+<head>
+    <style>
+        /* Basic styles for the chat item */
+.chat-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Styles for the chat title */
+.chat-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Styles for the ellipsis button */
+.more-options-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/* Styles for rename and delete menu */
+.options-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f1f1f1;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 5px;
+    z-index: 1;
+}
+
+.options-menu.visible {
+    display: block;
+}
+
+/* Button styles inside options menu */
+.options-menu button {
+    display: block;
+    background: transparent;
+    border: none;
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    
+<div class="chat-content">
+    <div class="chat-title" title="${chat.name}">
+        <h3>álkjdalksjdlkajslkdjalksjdklj</h3>
+    </div>
+    <button class="more-options-btn" title="More options">...</button>
+    <div class="options-menu">
+        <button class="rename-btn" title="Rename chat">✎ Rename</button>
+        <button class="delete-btn" title="Delete chat">🗑 Delete</button>
+    </div>
+</div>
+
+<script>// JavaScript to toggle the visibility of rename and delete options
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".more-options-btn").forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+                const optionsMenu = e.target.nextElementSibling;
+                optionsMenu.classList.toggle("visible");
+            });
+        });
+    });
+    </script>
+
+</body>
