@@ -40,6 +40,8 @@ document
 
       const result = await response.json();
       console.log(JSON.stringify(result));
+      container.classList.remove("active");
+
       // document.getElementById("registerResult").innerText =
       //   JSON.stringify(result); // For demonstration, we'll just reset the form:
       this.reset();
@@ -63,5 +65,6 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
   const result = await response.json();
   console.log( JSON.stringify(result));
+  
   
 });

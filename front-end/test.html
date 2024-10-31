@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat Box</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar for chat sessions -->
+        <aside class="sidebar">
+            <h2>Chat Sessions</h2>
+            <ul id="chat-sessions">
+                <!-- Chat sessions will be added here -->
+            </ul>
+            <button onclick="startNewChat()">+ Start New Chat</button>
+        </aside>
+
+        <!-- Main chat area -->
+        <section class="chat-area">
+            <div class="chat-header">
+                <h2 id="chat-title">Chat with AI</h2>
+            </div>
+            <div id="chat-messages" class="chat-messages">
+                <!-- Chat messages from history will be displayed here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Type your message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </section>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

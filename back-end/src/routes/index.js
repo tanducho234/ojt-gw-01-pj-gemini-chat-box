@@ -20,6 +20,11 @@ router.get('/logout', (req, res) => {
 router.use('/users', authMiddleware, userRoutes);
 //chatbox route
 router.use('/chat',authMiddleware, chatRoutes);
+//simple /root route
+router.get('/', (req, res) => {
+    console.log('someone');
+    res.send('Hello, This api is running on TanHo laptop!');
+});
 
 
 
