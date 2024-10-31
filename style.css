@@ -343,32 +343,29 @@ body.hide-header .header {
   }
 }
 
-/* strong {
-  font-weight: bold;
-  font-size: 18px;
-} */
-
-/* code {
-  background-color: #848484;  
-  border: 1px solid #aee025;     
-  padding: 2px 4px;          
-  border-radius: 4px;      
-  font-family: monospace;  
+.text code {
+  background-color: #ebfdff;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color:  black;
+  font-family: monospace;
 }
 
-.code-block {
-  background-color: #b7ff02; 
-  border: 1px solid #ff1900; 
-  padding: 10px; 
-  border-radius: 5px;
+.text pre {
+  background-color: #7efff6;
+  padding: 1em;
+  border-radius: 4px;
   overflow-x: auto;
-  white-space: pre; 
-  font-family: monospace; 
-} */
+}
+
+.text strong {
+  font-weight: bold;
+}
+
 
 
 #chat-container {
-  max-width: 600px;
+  max-width: 500px; /* Thu nhỏ kích thước khung chat */
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ddd;
@@ -376,20 +373,68 @@ body.hide-header .header {
 }
 
 .message {
-  padding: 10px;
-  margin-bottom: 8px;
-  border-radius: 5px;
-  max-width: 70%;
-  word-wrap: break-word;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
 }
 
 .user-message {
-  background-color: #d1e7dd;
-  align-self: flex-end;
-  text-align: right;
+  justify-content: flex-end; 
 }
 
 .model-message {
-  background-color: #f1f1f1;
-  align-self: flex-start;
+  justify-content: flex-start;
 }
+
+.user-message .avatar {
+  order: 2; 
+  margin-left: 10px;
+}
+
+.model-message .avatar {
+  order: 1; 
+  margin-right: 10px;
+}
+
+.user-message .text {
+  background-color: #1f44fe;
+  color: #000000;
+  padding: 10px;
+  border-radius: 10px;
+  order: 1; 
+  margin-bottom: 10px;
+  max-width: auto;
+  text-align: right;
+}
+
+.model-message .text {
+  background-color: #ef44ea;
+  color: #130405;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  order: 2; 
+  max-width: auto;
+  text-align: left; 
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Thay đổi vị trí của avatar */
+.user-message {
+  flex-direction: row-reverse; /* Đảo ngược thứ tự để avatar nằm bên phải */
+}
+
+.model-message {
+  flex-direction: row; /* Avatar nằm bên trái cho mô hình */
+}
+
+
+
+
+
+
