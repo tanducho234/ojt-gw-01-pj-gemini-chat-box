@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    max-width: 1024px; 
+    min-height: 500px; 
+    margin: 0 auto; 
+    padding: 10px; 
+    color: #fff;
+    background-image: url('img/background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0; 
+    width: 100%; 
+}
+
+.logo img {
+    width: 205px;
+    height: 63px;
+    position: absolute;
+    top: 15px; 
+    left: 15px;
+    opacity: 1; 
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end; 
+    margin-left: 1050px; 
+}
+
+nav button {
+    width: 192px; 
+    height: 35.86px; 
+    padding: 8px 16px; 
+    border: 1px solid #ffffff; 
+    background: transparent; 
+    color: #fff; 
+    cursor: pointer; 
+    margin-left: 10px; 
+}
+
+.login-btn {
+    width: 83.07px; 
+    height: 35.86px; 
+    border-radius: 5px; 
+    padding: 8px 16px; 
+    background-color: transparent; 
+    color: #fff; 
+    border: 1.5px solid #fff; 
+    font-family: Outfit; 
+    font-size: 16px; 
+    font-weight: 500; 
+    line-height: 20.16px; 
+    letter-spacing: 0.02em; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: background-color 0.3s, border-color 0.3s; 
+}
+
+.login-btn:hover {
+    background-color: #0A4E7C; 
+}
+
+.signup-btn {
+    background-color: #042A49;
+    border: none;
+    border-radius: 5px;
+    width: 95.07px;   
+    height: 35.86px;  
+    font-family: Outfit;            
+    font-size: 16px;                
+    font-weight: 500;               
+    line-height: 20.16px;           
+    letter-spacing: 0.02em;         
+    text-align: center;             
+    transition: background-color 0.3s ease; 
+}
+
+.signup-btn:hover {
+    background-color: #0A4E7C; 
+}
+
+.hero {
+    width: 100%; 
+    height: 253px; 
+    text-align: center; 
+    padding: 40px 20px; 
+}
+
+.hero h1 {
+    font-family: 'Outfit', sans-serif; 
+    font-weight: 500; 
+    font-size: 42.67px; 
+    line-height: 53.76px; 
+    color: #2179A9; 
+}
+
+.hero h1 span {
+    font-family: 'Outfit', sans-serif; 
+    font-size: 51.2px; 
+    font-weight: 500; 
+    line-height: 64.51px; 
+    text-align: right; 
+    color: #fff; 
+}
+
+.hero p {
+    margin: 10px 0; 
+    width: 100%px; 
+    height: 48px; 
+    font-family: 'Poppins', sans-serif; 
+    font-size: 16px; 
+    font-weight: 400; 
+    line-height: 24px; 
+    text-align: center; 
+    color: #8C8C8C; 
+}
+
+.hero p span {
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.get-started-btn {
+    width: 177px; 
+    height: 39px; 
+    padding: 0; 
+    background: #003E6080; 
+    color: #fff; 
+    border: 1.5px solid #00679F; 
+    border-radius: 5px; 
+    font-family: Poppins, sans-serif;  
+    font-size: 14px; 
+    font-weight: 700; 
+    line-height: 21px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.get-started-btn:hover {
+    background: rgba(0, 62, 96, 0.9); 
+    color: #ffffff; 
+}
+
+.chatbots {
+    width: 100%; 
+    height: 250.94px; 
+    padding: 40px 20px; 
+    text-align: center; 
+}
+
+.chatbots h2 {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 22px; 
+    font-weight: 400; 
+    line-height: 33px; 
+    text-align: left; 
+    color: #FFFFFF; 
+}
+
+.chatbots h2 span {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 22px; 
+    font-weight: 600; 
+    line-height: 33px; 
+    text-align: left; 
+    color: #FFFFFF; 
+}
+
+.card-container {
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    max-width: 974.22px; 
+    gap: 14.67px; 
+}
+
+.card {
+    width: 222.22px; 
+    height: 197.94px; 
+    border-radius: 11.08px; 
+    border-top: 2.67px solid #002D45; 
+    padding: 19.69px 9.85px; 
+    background: linear-gradient(149.88deg, #011018 37.22%, #001F2F 70.43%, #001622 97.89%, #2179A9 132.38%, #0068A0 150.9%); 
+    box-shadow: 3.69px 6.46px 24px 0px #0000001F; 
+    text-align: center; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.3); 
+}
+
+.card:nth-child(1) {
+    margin-left: 0; 
+}
+
+.card:nth-child(4) {
+    margin-right: 0; 
+}
+
+.card h3 {
+    margin: 10px 0; 
+    color: #FFFFFF; 
+    width: 202.53px; 
+    height: 27px; 
+    font-family: 'Poppins', sans-serif; 
+    font-size: 17.78px; 
+    font-weight: 600; 
+    line-height: 26.67px; 
+    text-align: center; 
+}
+
+.card p {
+    color: #B5B5B5; 
+    width: 202.53px; 
+    height: 64px; 
+    font-family: 'Poppins', sans-serif; 
+    font-size: 10.67px; 
+    font-weight: 500; 
+    line-height: 16px; 
+    text-align: center; 
+}
+
+.icon {
+    width: 53.33px;
+    height: 53.33px;
+    margin: 0 auto 10px;
+    background-color: #1e90ff;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px; 
+    }
+
+    .card {
+        flex: 1 1 100%; 
+        max-width: none;
+    }
+}
