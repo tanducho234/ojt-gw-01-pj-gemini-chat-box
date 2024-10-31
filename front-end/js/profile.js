@@ -173,3 +173,24 @@ document.getElementById("exportBtn").addEventListener("click", function () {
     alert("You chose No.");
   }
 });
+
+document.getElementById("logOutBtn").addEventListener("click", function () {
+  // Clear the JWT cookie
+  fetch("https://sl36qhn5-3000.asse.devtunnels.ms/logout", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include", // Ensures cookies are sent with the request
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "login-register.html"; // Redirect after logout
+      } else {
+        console.error("Logout failed:", response.statusText);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+  console.log("Logout button clicked");
+  // Optionally, redirect the user or update the UI
+});

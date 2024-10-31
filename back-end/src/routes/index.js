@@ -12,9 +12,13 @@ const chatRoutes = require('./chatSessionRoutes');
 // Add routes to the router
 router.use('/register', registerRoutes);
 router.use('/login', loginRoutes);
-router.get('/logout', (req, res) => {
-    res.clearCookie('token');
-    res.redirect('/login');
+router.post('/logout', (req, res) => {
+    res.cookie("jwt", "", {
+        httpOnly: true,
+        maxAge:0,
+        sameSite: "None", // Adjust as needed
+        secure: true       // Only set to true if testing over HTTPS
+    });    res.json({ message: 'Logout successful' });
 });
 
 router.use('/users', authMiddleware, userRoutes);

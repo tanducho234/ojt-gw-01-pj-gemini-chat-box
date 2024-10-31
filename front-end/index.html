@@ -8,23 +8,23 @@
         document.getElementById("logout-link").addEventListener("click", function(event) {
             event.preventDefault(); // Prevent default link behavior
 
-            // Clear cookies by setting them to expired
-            document.cookie.split(";").forEach(function(c) {
-                document.cookie = c.split("=")[0] + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"; 
-            });
+            // // Clear cookies by setting them to expired
+            // document.cookie.split(";").forEach(function(c) {
+            //     document.cookie = c.split("=")[0] + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"; 
+            // });
 
             // Optionally, you can make a request to log out on the server
-            // fetch("/logout", { method: "GET", credentials: "include" })
-            // .then(response => {
-            //     if (response.ok) {
-            //         window.location.href = "login-register.html"; // Redirect after logout
-            //     } else {
-            //         console.error("Logout failed:", response.statusText);
-            //     }
-            // })
-            // .catch(error => {
-            //     console.error("Error:", error);
-            // });
+            fetch("/logout", { method: "POST", credentials: "include" })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "login-register.html"; // Redirect after logout
+                } else {
+                    console.error("Logout failed:", response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
 
             // Redirect to login/register page immediately after clearing cookies
             window.location.href = "login-register.html"; // Change this as needed

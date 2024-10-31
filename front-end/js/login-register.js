@@ -68,4 +68,12 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
   const result = await response.json();
   console.log(JSON.stringify(result));
+  //if status 401 display a alert that show you put incorrect pass
+  if (response.status === 401) {
+    alert("Incorrect password. Please try again.");
+  }
+  else{
+    window.location.href = "profile.html"; // Redirect to the desired page
+  }
+  
 });

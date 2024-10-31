@@ -23,7 +23,7 @@ module.exports.login = async function(req, res) {
             }, secretKey, {expiresIn: '12h'});
             // res save to cookie
             res.cookie("jwt", token, {
-                httpOnly: true,
+                // httpOnly: true,
                 maxAge: 12 * 3600 * 1000,
                 sameSite: "None", // Adjust as needed
                 secure: true       // Only set to true if testing over HTTPS
