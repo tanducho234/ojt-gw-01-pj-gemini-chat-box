@@ -6,6 +6,44 @@ const toggleBtn = document.querySelector("#toggle-btn");
 const chatSidebar = document.querySelector("#chat-sidebar");
 const chatContainer = document.querySelector(".chat-container");
 
+const sendBtn = document.getElementById('send-btn');
+const userInput = document.getElementById('user-input');
+const chatMessages = document.getElementById('chat-messages');
+
+
+
+
+function addMessage(message, isUser = true) {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = isUser ? 'user-message' : 'bot-message';
+  messageDiv.textContent = message;
+  chatMessages.appendChild(messageDiv);
+
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+
+
+sendBtn.addEventListener('click', () => {
+  const message = userInput.value.trim();
+  if (message) {
+    addMessage(message);  
+    userInput.value = ''; 
+
+    
+    setTimeout(() => {
+      addMessage('This is a bot response.', false);
+    }, 1000);
+  }
+});
+
+
+userInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    sendBtn.click();
+  }
+});
 
 // Toggle sidebar mở/đóng
 toggleBtn.addEventListener("click", () => {
@@ -56,7 +94,7 @@ function onSearchChange(value) {
     renderChats();
 }
 // Hàm rút gọn text
-function truncateText(text, maxLength = 10) {
+function truncateText(text, maxLength = 20) {
     if (text.length > maxLength) {
         return text.substring(0, maxLength) + "...";
     }
@@ -103,6 +141,9 @@ function renderChats() {
         deleteBtn.addEventListener("click", () => deleteChat(chatItem));
     });
 }
+
+
+
 // Hàm đổi tên chat
 function renameChat(chatItem) {
     const newName = prompt("Nhập tên mới cho cuộc trò chuyện:", chatItem.querySelector("h3").textContent);
@@ -111,6 +152,9 @@ function renameChat(chatItem) {
     }
 }
 
+
+
+
 // Hàm xóa chat
 function deleteChat(chatItem) {
     const confirmDelete = confirm("Bạn có chắc muốn xóa cuộc trò chuyện này?");
@@ -118,6 +162,32 @@ function deleteChat(chatItem) {
         chatItem.remove();
     }
 }
+
+const typingIndicator = document.getElementById("typing-indicator");
+
+// Hiển thị "đang gõ..." khi bot chuẩn bị trả lời
+function showTypingIndicator() {
+  typingIndicator.style.display = "block";
+}
+
+// Ẩn "đang gõ..." sau khi bot trả lời
+function hideTypingIndicator() {
+  typingIndicator.style.display = "none";
+}
+
+// Khi bạn gửi câu hỏi cho bot, hiển thị hiệu ứng
+document.querySelector(".send-btn").addEventListener("click", () => {
+  showTypingIndicator();
+  
+  // Giả lập thời gian chờ của bot (sửa lại hàm này với hàm API bot của bạn)
+  setTimeout(() => {
+    hideTypingIndicator();
+    // Thêm tin nhắn bot vào giao diện
+  }, 2000); // Điều chỉnh thời gian chờ của bot
+});
+
+
+
 
 // Sự kiện khi nhấn nút toggle để mở/đóng sidebar
 document.querySelector("#toggle-btn").addEventListener("click", toggleSidebar);

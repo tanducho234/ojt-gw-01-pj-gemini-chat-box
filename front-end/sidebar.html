@@ -5,41 +5,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gemini Chatbot | Aswath </title>
-  <!-- Linking Google Fonts For Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/sidebar.css">
 </head>
 <body>
-   <!-- <div class="navbar">
-        <div class="logo-section">
-         
-          <i class="fas fa-bars sidebar-icon"></i>
-          <div class="logo">
-           
-          </div>
-        </div>
+  <div class="navbar">
+    <div class="logo">
+      <img src="/front-end/images/Logo.jpg" alt="FasterAI logo">
+    </div>
+    <div class="profile-buttons">
+      <i class="fa-regular fa-circle-user profile-icon"></i>
+    </div>
+  </div>
+
+  <!-- Chat Container -->
+  <div class="chat-container">
+    <div class="chat-messages" id="chat-messages">
+      <div class="typing-indicator" id="typing-indicator">Bot is typing<span class="dots">...</span></div>
+
+    </div>
     
-        <div class="auth-buttons">
-          
-          <i class="fas fa-user-circle profile-icon"></i>
-        </div>
-      </div>
-    
-      
-      <div class="chat-container">
-        <div class="message-box">
-          <input type="text" placeholder="Message Chatbot..." />
-          <button class="send-btn">&#10132;</button>
-        </div>
-        
-      </div> -->
+    <!-- Message Box -->
+    <div class="message-box">
+      <input type="text" placeholder="Message Chatbot..." id="user-input"/>
+      <button class="send-btn" id="send-btn">&#10132;</button>
+    </div> 
     <button class="toggle-btn" id="toggle-btn">☰</button>
     <div class="chat-sidebar" id="chat-sidebar"><br><br>      
         <h2 class="sidebar-title">Faster</h2>
         <button class="new-chat-btn" id="new-chat-btn">New Chat</button>
         <div class="search-new-chat-section"></div>
         <input type="text" placeholder="Search History..." class="search-input" />
-        
+          
         
 
         <div class="menu" id="chat-list">
