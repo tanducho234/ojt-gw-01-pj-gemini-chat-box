@@ -334,9 +334,9 @@ ul div li {
 }
 
 code {
-  background-color: #424242;
+  background-color: #42424275;
   border-radius: 4px;
-  color:  rgb(53, 166, 197);
+  color: #52c2f7;
   font-family: monospace;
 }
 
@@ -349,4 +349,117 @@ pre {
 
 strong {  
   font-weight: bold;
+}
+
+
+.header, .chat-list .message, .typing-form {
+  margin: 0 auto;
+  max-width: 980px;
+}
+
+.header {
+  margin-top: 6vh;
+  padding: 1rem;
+  overflow-x: hidden;
+  display: none;
+}
+
+body.hide-header .header {
+  margin: 0;
+  display: none;
+}
+
+.header :where(.title, .subtitle) {
+  color: var(--text-color);
+  font-weight: 500;
+  line-height: 4rem;
+}
+
+.header .title {
+  font-weight: 700;
+  width: fit-content;
+  font-size: 3rem;
+  background-clip: text;
+  background: radial-gradient(circle, #609f26 0%, #1eb894 30%, #338296 75%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header .subtitle {
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #3211aa 0%,
+    #deec49 29%,
+    #41ed41 67%,
+    #0639a7 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+      font-size: 60px;
+}
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.suggestion-list {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 9.5vh;
+  overflow: hidden;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.suggestion-list .suggestion {
+  font-size: 18px;
+  width: 222px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #fff;
+  border-radius: 11.08px;
+  border-top: 2.67px solid #002D45;
+  padding: 19.69px 9.85px;
+  justify-content: space-between;
+  background: linear-gradient(149.88deg, #011018 37.22%, #001F2F 70.43%, #001622 97.89%, #2179A9 132.38%, #0068A0 150.9%);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.suggestion-list .suggestion:hover {
+  background: linear-gradient(149.88deg, #14a5f4 37.22%, #394144 70.43%, #495f6a 97.89%, #26292a 132.38%, #101010 150.9%);
+}
+
+.suggestion-list .suggestion :where(.text, .icon) {
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.suggestion-list .suggestion .icon {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  font-size: 1.3rem;
+  margin-top: 2.5rem;
+  align-self: flex-end;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  color: var(--text-color);
+  background: rgb(4, 9, 40);
 }
