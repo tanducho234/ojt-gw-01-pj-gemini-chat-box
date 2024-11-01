@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test User API</title>
+  </head>
+  <body>
+    <h2>Register</h2>
+    <form id="registerForm">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="registerEmail"
+        name="email"
+        required
+      /><br /><br />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="registerPassword"
+        name="password"
+        required
+      /><br /><br />
+
+      <label for="fullName">Full Name:</label>
+      <input
+        type="text"
+        id="registerFullName"
+        name="fullName"
+        required
+      /><br /><br />
+
+      <button type="submit">Register</button>
+    </form>
+    <div id="registerResult"></div>
+
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="email">Email:</label>
+      <input type="email" id="loginEmail" name="email" required /><br /><br />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="loginPassword"
+        name="password"
+        required
+      /><br /><br />
+
+      <button type="submit">Login</button>
+    </form>
+    <div id="loginResult"></div>
+
+    <h2>Fetch All Chats</h2>
+    <button id="fetchChatsButton">Fetch All Chats</button>
+    <div id="chatResult"></div>
+
+    <script>
+      // Register Form Submit Handler
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("registerEmail").value;
+          const password = document.getElementById("registerPassword").value;
+          const fullName = document.getElementById("registerFullName").value;
+
+          const response = await fetch(
+            "https://sl36qhn5-3000.asse.devtunnels.ms/register",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password, fullName }),
+            }
+          );
+
+          const result = await response.json();
+          document.getElementById("registerResult").innerText =
+            JSON.stringify(result);
+        });
+
+      // Login Form Submit Handler
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("loginEmail").value;
+          const password = document.getElementById("loginPassword").value;
+
+          const response = await fetch(
+            "https://sl36qhn5-3000.asse.devtunnels.ms/login",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+              credentials: "include", // Ensures cookies (like JWT) are sent with the request
+            }
+          );
+
+          const result = await response.json();
+          document.getElementById("loginResult").innerText =
+            JSON.stringify(result);
+        });
+
+      // Fetch All Chats Button Handler
+      document
+        .getElementById("fetchChatsButton")
+        .addEventListener("click", async () => {
+          const response = await fetch(
+            "https://sl36qhn5-3000.asse.devtunnels.ms/chat/all",
+            {
+              method: "GET",
+              headers: { "Content-Type": "application/json" },
+              credentials: "include", // Send cookies with request
+            }
+          );
+
+          if (response.ok) {
+            const chats = await response.json();
+            document.getElementById("chatResult").innerText =
+              JSON.stringify(chats);
+          } else {
+            document.getElementById("chatResult").innerText =
+              "Failed to fetch chats";
+          }
+        });
+    </script>
+  </body>
+</html>

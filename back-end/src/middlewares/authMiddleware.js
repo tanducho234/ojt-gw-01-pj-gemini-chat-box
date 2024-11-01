@@ -12,7 +12,7 @@ function authMiddleware(req, res, next) {
     
     // Check if token exists
     if (!token) {
-      return res.redirect("/login"); // Return here to prevent further execution
+      return res.status(401).json({ message: "Unauthorized" });
     }
     
     // Verify token
@@ -28,7 +28,7 @@ function authMiddleware(req, res, next) {
     
     // If token is invalid, clear cookie and redirect
     res.clearCookie("jwt"); // Clear the cookie
-    return res.redirect("/login"); // Return here to prevent further execution
+    return res.status(401).json({ message: "Unauthorized" });
   }
 }
 

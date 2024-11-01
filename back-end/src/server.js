@@ -9,10 +9,15 @@ const dotenv = require("dotenv");
 const PORT = process.env.PORT || 3000;
 process.env.TZ = "Asia/Ho_Chi_Minh";
 
-app.use(cors({
-  origin: 'http://127.0.0.1:5500',  // Replace with your frontend origin
-  credentials: true                // Allow cookies and other credentials
-}));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      callback(null, true); // Allow all origins
+    },
+    credentials: true, // Allow cookies and other credentials
+  })
+);
+
 // Middleware
 app.use(express.json());
 app.use(

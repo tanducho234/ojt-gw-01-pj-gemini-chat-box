@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-card">
+            <h1>User Profile</h1>
+    
+            <div class="profile-image-section">
+                <img id="profileImage" src="images/avatar3.png" alt="Profile Image">
+            </div>
+    
+         <!-- Action Buttons Section -->
+<div class="action-buttons">
+    <button id="editProfileBtn" class="edit-btn">
+        <span class="material-icons">edit</span>
+        Edit Profile
+    </button>
+    <button id="exportBtn" class="export-btn">
+        <span class="material-icons">file_download</span>
+        Export Profile Data
+    </button>
+    <button id="logOutBtn" class="logout-btn">
+        <span class="material-icons">logout</span>
+        Log Out
+    </button>
+</div>
+
+            <!-- Profile Form -->
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="name">Full name</label>
+                    <input type="text" id="fullName" placeholder="Loading..." disabled>
+                </div>
+    
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email"  placeholder="Loading..." disabled>
+                </div>
+    
+                <!-- Password Fields (Hidden Initially) -->
+                <div class="form-group password-input" id="passwordFields" style="display: none;">
+                    <label for="password">New Password</label>
+                    <input type="password" id="password" placeholder="Enter new password">
+                    
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Re-enter new password">
+                </div>
+            </form>
+        </div>
+    </div>   
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <span id="notificationMessage"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/profile.js"></script>
+</body>
+</html>
