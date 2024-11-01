@@ -172,14 +172,16 @@ window.onload = async () => {
 
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
+  const inputChat = document.getElementById("chat-input");
   // Toggle the display style between 'none' and 'block'
   if (sidebar.style.display === "none" || sidebar.style.display === "") {
     sidebar.style.display = "block"; // Show the sidebar
+    inputChat.style.left = "10%";
   } else {
     sidebar.style.display = "none"; // Hide the sidebar
+    inputChat.style.left = "";
   }
 }
-
 function startNewChat() {
   window.location.href = "chat.html";
 }
@@ -289,7 +291,7 @@ const putChatName = async (sessionId, chatName) => {
 };
 
 function handleProfileClick() {
-  alert("Profile icon clicked!");
+  window.location.href = "profile.html";
 }
 
 function handleEnter(event) {

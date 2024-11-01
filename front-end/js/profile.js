@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     credentials: "include", // Ensures cookies are sent with the request
   })
     .then((response) => {
-      if (response.redirected) {
+      if (response.status===401) {
         window.location.href = "login-register.html"; // Redirect to the URL provided in the response
         return;
       }
