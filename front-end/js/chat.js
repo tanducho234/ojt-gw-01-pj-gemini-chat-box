@@ -172,9 +172,9 @@ async function sendMessage() {
     // Clear input field
     input.value = "";
     const apiResponse = await generateAPIResponse(messageText);
-
+    const formatMessages = renderResponseContent(apiResponse);
     // Simulate AI response (you can replace this with real response from backend)
-    setTimeout(() => addMessage("model", apiResponse, true), 1000);
+    setTimeout(() => addMessage("model", formatMessages, true), 1000);
   }
 }
 
