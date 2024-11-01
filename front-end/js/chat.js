@@ -1,3 +1,6 @@
+const suggestions = document.querySelectorAll(".suggestion");
+const input = document.getElementById("user-input");
+
 // Sample chat history array
 let chatHistory = [];
 let chatSessions = [];
@@ -117,6 +120,20 @@ function loadChatHistory() {
   });
 }
 
+function typeWriter(element, content, speed) {
+  let index = 0;
+
+  function type() {
+      if (index < content.length) {
+          element.textContent += content.charAt(index);
+          index++;
+          setTimeout(type, speed);
+      }
+  }
+
+  type();
+}
+
 // Function to add a message to the chat area
 function addMessage(sender, messageText, isHTML = false) {
   const messageElement = document.createElement("div");
@@ -135,9 +152,17 @@ function addMessage(sender, messageText, isHTML = false) {
   chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the bottom
 }
 
+suggestions.forEach((suggestion) => {
+  suggestion.addEventListener("click", () => {
+    const userMessage = suggestion.querySelector(".text").innerText;    
+    input.value = userMessage;
+    sendMessage();
+  });
+});
+
 // Function to send a message
 async function sendMessage() {
-  const input = document.getElementById("user-input");
+  // const input = document.getElementById("user-input");
   const messageText = input.value.trim();
 
   if (messageText) {
@@ -147,12 +172,9 @@ async function sendMessage() {
     // Clear input field
     input.value = "";
     const apiResponse = await generateAPIResponse(messageText);
-    const formattedContent = renderResponseContent(apiResponse);
-
-    console.log("apiress", apiResponse);
 
     // Simulate AI response (you can replace this with real response from backend)
-    setTimeout(() => addMessage("model", formattedContent, true), 1000);
+    setTimeout(() => addMessage("model", apiResponse, true), 1000);
   }
 }
 
@@ -164,6 +186,8 @@ window.onload = async () => {
   getSessionId();
   if (!sessionId) {
     console.log("No chat sessions found.");
+    const header = document.querySelector(".header");
+    header.style.display = "block";
   } else {
     chatHistory = await fetchChatHistory(sessionId);
     loadChatHistory();
@@ -470,3 +494,38 @@ function formatMessages(input) {
 
   return output;
 }
+
+// Array of suggestions
+const promtSuggestions = [
+  "Help me plan a game night with my 5 best friends for under $100.",
+  "What are the best tips to improve my public speaking skills?",
+  "Can you help me find the latest news on web development?",
+  "Write JavaScript code to sum all elements in an array.",
+  "Recommend a good book for self-improvement.",
+  "How do I start a daily meditation routine?",
+  "Share some easy and quick dinner recipes.",
+  "What is the best way to learn a new language?",
+  "Suggest a workout routine for beginners.",
+  "Tell me a motivational quote.",
+  // Add as many suggestions as you'd like
+];
+
+// Function to shuffle an array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Shuffle the suggestions array and select the first 4
+const randomSuggestions = shuffleArray(promtSuggestions).slice(0, 4);
+
+// Insert the random suggestions into elements with IDs suggest-1 to suggest-4
+randomSuggestions.forEach((suggestion, index) => {
+  const suggestionElement = document.getElementById(`suggest-${index + 1}`);
+  if (suggestionElement) {
+    suggestionElement.innerText = suggestion;
+  }
+});

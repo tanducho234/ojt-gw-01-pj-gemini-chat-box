@@ -20,8 +20,6 @@
   </head>
 
   <body>
-    <!-- Sidebar Toggle Button -->
-
     <button id="sidebar-toggle" onclick="toggleSidebar()">
       <ion-icon class="sidebarBtn" name="list-circle"></ion-icon>
     </button>
@@ -61,6 +59,40 @@
           <div class="profile-icon" onclick="handleProfileClick()">
             <img src="images/avatar3.png" alt="Profile Icon" />
           </div>
+        </div>
+        <!-- Sidebar Toggle Button -->
+        <div class="header">
+          <!-- Header Greetings -->
+          <h1 class="title">Hello, there</h1>
+          <p class="subtitle">How can I help you today?</p>
+
+          <!-- Suggestion list -->
+          <ul class="suggestion-list">
+            <li class="suggestion">
+              <h4 id="suggest-1" class="text">
+                Help me plan a game night with my 5 best friends for under $100.
+              </h4>
+              <span class="icon material-symbols-rounded">draw</span>
+            </li>
+            <li class="suggestion">
+              <h4 id="suggest-2"class="text">
+                What are the best tips to improve my public speaking skills?
+              </h4>
+              <span class="icon material-symbols-rounded">lightbulb</span>
+            </li>
+            <li class="suggestion">
+              <h4 id="suggest-3"class="text">
+                Can you help me find the latest news on web development?
+              </h4>
+              <span class="icon material-symbols-rounded">explore</span>
+            </li>
+            <li class="suggestion">
+              <h4 id="suggest-4" class="text">
+                Write JavaScript code to sum all elements in an array.
+              </h4>
+              <span class="icon material-symbols-rounded">code</span>
+            </li>
+          </ul>
         </div>
         <div id="chat-messages" class="chat-messages">
           <!-- Chat messages from history will be displayed here -->
