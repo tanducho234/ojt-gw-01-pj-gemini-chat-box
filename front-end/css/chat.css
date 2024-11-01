@@ -1,0 +1,334 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", serif;
+  font-style: normal;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  transition: margin-left 0.3s;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+#chat-sessions {
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 6px;
+  margin: 60px 7px;
+  background-color: #171617;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  height: 65vh;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
+}
+#chat-sessions li {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+#chat-sessions button {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+}
+.start-chat h2 {
+  margin-top: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+.start-chat .search-input {
+  transform: translateY(10px);
+}
+.start-chat i {
+  transform: translateY(100px);
+}
+
+.sidebar {
+  width: 20%;
+  background: radial-gradient(circle, #0a0c11 0%, #0f121a 50%, #1a2735 100%);
+  color: #ecf0f1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+  width: 300px;
+  padding: 20px;
+  color: #f4efef;
+  overflow-y: auto;
+}
+#sidebar-toggle {
+  display: flex;
+  color: white;
+  background-color: #020104;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.8);
+  margin-top: 10px;
+  margin-left: 10px;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #34495e;
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Hides overflowed text */
+  text-overflow: ellipsis; /* Adds ellipsis (...) at the end if text is too long */
+}
+
+.sidebar li:hover {
+  background-color: #34495e;
+}
+
+.chat-area {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #02080c;
+  background-image: radial-gradient(
+    circle at 50% 100%,
+    #0e415cbf 10%,
+    #01101800 50%
+  );
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-image: radial-gradient(
+    circle at 50% 100%,
+    #0e415cbf 10%,
+    #01101800 50%
+  );
+  color: #fff;
+  padding: 20px 70px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 0 15% 20px 15%;
+  overflow-y: auto;
+
+  padding-bottom: 100px;
+  background: transparent;
+}
+
+.chat-input {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 20px;
+  transform: translate(27px, 0);
+}
+
+.chat-input input {
+  padding: 0 60px 0 20px;
+  width: 800px;
+  height: 50px;
+  border: 2px solid #0068a0;
+  background: #001622;
+  border-radius: 25px;
+  color: #fff;
+}
+
+.chat-input button {
+  color: #fff;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 58px;
+  transform: translate(-54px, -10px);
+}
+#sidebar-toggle .sidebarBtn {
+  position: absolute;
+  color: #1f506b;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 50px;
+  transform: translate(-20px, -15px);
+}
+#sidebar {
+  transition: left 1s ease-in-out;
+}
+
+/* Message Alignment */
+
+.chat-message.user {
+  text-align: left;
+  color: white;
+  background-color: #011018;
+  border: solid 1.5px #5c43d9;
+  padding: 15px 30px;
+  border-radius: 20px;
+  border-bottom-right-radius: 0;
+  margin: 20px 0px;
+  max-width: 65%;
+  margin-left: auto;
+}
+
+.chat-message.model {
+  text-align: left;
+  color: #fff;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+  max-width: 100%;
+  margin-right: auto;
+}
+
+#sidebar-toggle {
+  position: absolute;
+  color: #fff;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 4px;
+  transform: translate(30px, 30px);
+}
+
+aside ul div {
+  display: flex;
+  justify-content: space-between;
+}
+
+aside ul button {
+  background-color: transparent;
+  border-width: 0;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  flex-grow: 1;
+  overflow-y: auto; /* Enable vertical scrolling */
+  margin-bottom: 10px;
+  max-height: 80vh; /* Set a maximum height for scrolling */
+}
+
+.sidebar ul::-webkit-scrollbar {
+  display: none;
+}
+
+.context-menu {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it appears above other elements */
+  width: 150px; /* Set a fixed width for the menu */
+}
+
+.context-menu-item {
+  padding: 10px 15px; /* Spacing inside each menu item */
+  cursor: pointer; /* Change cursor on hover */
+  display: flex; /* Use flex to align icon and text */
+  align-items: center; /* Center items vertically */
+}
+.search-input {
+  width: 100%;
+  padding: 10px 20px 10px 20px;
+  border: 1px solid #280fa4;
+  border-radius: 30px;
+
+  background-color: rgba(19, 46, 54, 0.8);
+  color: white;
+}
+
+.context-menu-item:hover {
+  background-color: #f0f0f0; /* Change background on hover */
+}
+
+.context-menu-item i {
+  margin-right: 8px; /* Space between icon and text */
+  color: #333; /* Icon color */
+}
+
+div aside h2 {
+  padding-top: 20px;
+}
+
+ul div li {
+  flex: 1;
+}
+
+#add-new-chat {
+  text-align: end;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #020792;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1d33c3;
+}
+
+/* Profile button*/
+.profile-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer; /* Con trỏ sẽ thành bàn tay khi hover */
+}
+
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

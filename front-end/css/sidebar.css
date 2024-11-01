@@ -1,0 +1,557 @@
+/* Import Google Font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.chat-list .message .icon.hide {
+  visibility: hidden;
+}
+
+.chat-list .message:not(.loading, .error):hover .icon:not(.hide){
+  visibility: visible;
+}
+
+.chat-list .message .icon:hover {
+  background: var(--secondary-hover-color);
+}
+
+.chat-list .message .loading-indicator {
+  display: none;
+  gap: 0.8rem;
+  width: 100%;
+  flex-direction: column;
+}
+
+.chat-list .message.loading .loading-indicator {
+  display: flex;
+}
+
+.chat-list .message .loading-indicator .loading-bar {
+  height: 11px;
+  width: 100%;
+  border-radius: 0.135rem;
+  background-position: -800px 0;
+  background: linear-gradient(116.54deg, #000000 0.87%, rgba(0, 57, 89, 0.6) 215.31%);
+
+  animation: loading 3s linear infinite;
+}
+
+.chat-list .message .loading-indicator .loading-bar:last-child {
+  width: 70%;
+}
+
+@keyframes loading {
+  0% {
+    background-position: -800px 0;
+  }
+
+  100% {
+    background-position: 800px 0;
+  }
+}
+
+/* Responsive media query code for small screen */
+@media (max-width: 768px) {
+  .header :is(.title, .subtitle) {
+    font-size: 2rem;
+    line-height: 2.6rem;
+  }
+
+  .header .subtitle {
+    font-size: 1.7rem;
+  }
+
+  .typing-area :where(.typing-form, .action-buttons) {
+    gap: 0.4rem;
+  }
+
+  .typing-form .input-wrapper {
+    height: 50px;
+  }
+
+  .typing-form .typing-input {
+    padding: 1.1rem 3.5rem 1.1rem 1.2rem;
+  }
+
+  .typing-area .icon {
+    height: 50px;
+    width: 50px;
+  }
+
+  .typing-area .disclaimer-text {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+}
+
+  
+  .typing-area .icon:hover, #send-message-button:hover {
+    background: linear-gradient(116.54deg, #000000 0.87%, rgba(0, 57, 89, 0.6) 215.31%);
+ /* Lighter shade of accent color */
+  }
+  
+
+
+/* Hiệu ứng khi hover */
+.suggestion-list .suggestion:hover {
+    background-color: #0068A0; /* Đổi màu khi hover để tăng tính tương tác */
+}
+
+  
+  .suggestion-list .suggestion:hover {
+    background: var(--secondary-hover-color);
+  }
+  
+
+  
+  .chat-session .chat-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #e0d6eb;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 12ch; /* Giới hạn độ dài tối đa 10 ký tự */
+  }
+
+  .chat-list .message .text {
+    color: var(--text-color);
+  }
+  
+  /* Style form input field */
+  .typing-form .typing-input {
+    background: var(--secondary-color);
+    color: var(--text-color);
+  }
+  
+  .typing-form .typing-input:focus {
+    background: var(--secondary-hover-color);
+  }
+  
+
+
+  /* Đặt kiểu cho vùng nhập liệu và nút gửi */
+.typing-area {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #001622;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #001622;
+    border-radius: 25px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.typing-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 16px;
+}
+
+#send-message-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #0068A0;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    transition: background-color 0.3s;
+}
+
+#send-message-button:hover {
+    background-color: white;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  body {
+    display: flex;
+  }
+  
+  #chat-sidebar {
+    width: 300px;
+    padding: 20px;
+    color: #f4efef;
+    overflow-y: auto;
+  }
+  
+  #chat-sidebar-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #000;
+    
+  }
+
+  .sidebar-title {
+    text-align: center;
+    font-size: 30px;
+    color: #1d0a6a;
+    font-weight: bold;
+    text-shadow: 
+      -1px -1px 0 #0a0d50,  /* Viền bên trên trái */
+      1px -1px 0 #664687,   /* Viền bên trên phải */
+      -1px 1px 0 #f0eff5,   /* Viền bên dưới trái */
+      1px 1px 0 #ffffff;    /* Viền bên dưới phải */
+}
+  
+  .section-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #666;
+  }
+   */
+ */
+  
+  
+  .main-content {
+    margin-left: 250px; /* Đẩy nội dung sang phải bằng với chiều rộng sidebar */
+    transition: margin-left 0.3s ease-in-out; /* Hiệu ứng thu phóng đồng bộ */
+    flex: 1;
+    padding: 20px;
+  }
+  /* ... giữ nguyên CSS cũ ... */
+
+/* Thêm styles mới cho arrow icon */
+.arrow-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 12px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.section-title.collapsed .arrow-icon {
+    transform: rotate(-90deg);
+}
+
+.section-content {
+    max-height: 1000px; /* Đủ cao để hiển thị tất cả nội dung */
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+}
+
+.section-content.collapsed {
+    max-height: 0;
+}
+
+/* Style cho hover state */
+.section-title:hover {
+    background-color: #272254;
+}
+
+.section-title .arrow-icon:hover {
+    opacity: 0.8;
+}
+/* Style cho sidebar */
+.chat-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 100%;
+  background: linear-gradient(to right, #000000, #003959);
+  padding: 20px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8); /* Bóng đổ 3D */
+}
+
+.chat-sidebar.active {
+  left: 0;
+  transform: perspective(1000px) rotateY(0deg);
+  box-shadow: 10px 0 40px rgba(0, 0, 0, 0.9); /* Tăng bóng đổ khi mở */
+}
+
+.sidebar-container {
+  width: 0;
+  transition: width 0.3s ease-in-out;
+  background-color: #F9FAFB;
+  border-right: 1px solid #E5E7EB;
+}
+.sidebar-container.open {
+  width: 16rem; /* 64px */
+}
+/* Sidebar khi thu gọn */
+.chat-sidebar.collapsed {
+  
+    transform: translateX(-100%);
+}
+
+/* Style cho nút toggle */
+.toggle-btn {
+  position: fixed;
+  top: 1.5px;
+  left: 2px;
+  width: 40px;
+  height: 40px;
+  background-color: #2e1266;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
+  font-size: 24px;
+  z-index: 1;
+  transition: left 0.3s ease-in-out;
+}
+.search-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #8072c5;
+  border-radius: 0.375rem;
+  padding-left: 2.25rem; /* Để chừa chỗ cho icon */
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+/* Thu nhỏ hoặc ẩn các mục menu khi sidebar thu gọn */
+.sidebar.collapsed .menu,
+.sidebar.collapsed .sidebar-title {
+    display: none; /* Ẩn toàn bộ menu và tiêu đề khi thu gọn */
+}
+
+/* Định dạng icon trong sidebar */
+.menu .section-title {
+    display: flex;
+    align-items: center;
+    color: #ddd;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+/* Thêm style cho phần mở rộng khi sidebar thu gọn */
+.sidebar.collapsed .menu .section-title .title-text {
+    display: none; /* Ẩn text khi sidebar thu gọn */
+}
+
+.sidebar.collapsed .menu .section-title .arrow-icon {
+    display: none; /* Ẩn icon điều hướng */
+}
+
+.chat-session {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 8px;
+  background-color: #171617; /* Màu nền nhẹ */
+  border-radius: 8px; /* Bo góc nhẹ */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Đổ bóng */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.chat-session .chat-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e0d6eb;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.chat-session .chat-info {
+  font-size: 12px;
+  color: #b8a8d1;
+  font-weight: 400;
+  text-align: right;
+}
+
+.chat-session:hover {
+  background-color: #3d2765; /* Thay đổi màu nền khi hover */
+  transform: scale(1.02); /* Tăng kích thước nhẹ khi hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Đổ bóng đậm hơn */
+}
+
+.rename-btn, .delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 16px;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.rename-btn:hover, .delete-btn:hover {
+    color: #ff6347; /* Màu khi hover */
+}
+.new-chat-btn {
+  width: 90%; /* Chiếm 90% chiều rộng để không chạm vào viền */
+  margin: 10px auto; /* Tạo khoảng cách bên trên và bên dưới */
+  background-color: #252327; /* Màu nền */
+  border: 2px solid #b2a1c7; /* Viền mỏng màu nhẹ */
+  color: #f2f1f8; /* Màu chữ */
+  border-radius: 8px; /* Bo tròn cho nút */
+  padding: 0.7rem; /* Tăng khoảng cách bên trong */
+  font-weight: bold; /* Tạo cảm giác chắc chắn */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  cursor: pointer; /* Thêm hiệu ứng con trỏ */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Hiệu ứng đổ bóng */
+  transition: all 0.3s ease; /* Chuyển đổi mượt mà */
+  font-size: 20px;
+}
+
+/* Thêm hiệu ứng cho viền khi hover */
+.new-chat-btn:hover {
+  background-color: #b2a1c7; /* Màu nền khi hover */
+  color: #3e11a0; /* Màu chữ khi hover */
+  border: 2px solid #3e11a0; /* Đổi màu viền khi hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Tăng độ bóng khi hover */
+}
+
+
+.new-chat-btn:hover {
+  background-color: #7a5a8d; /* Màu khi di chuột */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Đổ bóng đậm hơn */
+  border-color: #d1c3e4;
+}
+
+.new-chat-btn:active {
+  background-color: #5b4063; /* Màu khi nhấn */
+  transform: scale(0.98); /* Thu nhỏ nhẹ */
+  border-color: #a18bb4;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Giảm đổ bóng khi nhấn */
+}
+
+
+@media (min-width: 1024px) {
+
+  .chat-sidebar {
+    width: 300px;
+  }
+  
+  .typing-area {
+    position: fixed;
+    width: 100%;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  .chat-sidebar {
+    width: 250px;
+  }
+  
+  .typing-area {
+    padding: 1rem 2rem; 
+  }
+}
+
+
+@media (max-width: 767px) {
+ 
+  .chat-sidebar {
+    width: 200px;
+  }
+  
+  .typing-area {
+    padding: 0.5rem 1rem; 
+  }
+
+  .menu-list li {
+    font-size: 12px;
+  }
+
+  .chat-session {
+    padding: 8px;
+  }
+}
+
+/* Sidebar Icon */
+.sidebar-icon {
+  font-size: 24px;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar-icon:hover {
+  color: #042A49;
+}
+
+
+/* Auth Buttons (Profile Icon) */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+
+.chat-container {
+  width: 80%;
+  height: 90vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-radius: 15px;
+  margin-top: 20px;
+  padding: 20px;
+  margin-left: 250px; Đẩy nội dung chính sang phải bằng với chiều rộng sidebar
+  transition: margin-left 0.3s ease-in-out; /* Hiệu ứng chuyển tiếp cho phù hợp với sidebar */
+  /* background: linear-gradient(to right, #000000, #003959); */
+
+}
+.chat-container.full-width {
+  margin-left: 0;
+}
+
+
+.message-box input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px;
+}
+
+.send-btn {
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.send-btn:hover {
+  background-color: #c542f5;
+}
+
