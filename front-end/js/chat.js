@@ -1,259 +1,7 @@
 // Sample chat history array
-const chathistory = [
-  {
-    content: "This is a message from the user.3",
-    sender: "user",
-    _id: "67208fc2adc4215255c7b94e",
-  },
-  {
-    content: "This is a message from the model.3",
-    sender: "model",
-    _id: "67208fc2adc4215255c7b94f",
-  },
-  {
-    content: "hello",
-    sender: "user",
-    _id: "6721de0680f06301f6f10ec8",
-  },
-  {
-    content: "Hello! How can I help you today?",
-    sender: "model",
-    _id: "6721de0680f06301f6f10ec9",
-  },
-  {
-    content: "cho tôi đoạn code js ngắn cộng 2 số",
-    sender: "user",
-    _id: "6721de1c80f06301f6f10ed4",
-  },
-  {
-    content: "Hello! How can I help you today?",
-    sender: "model",
-    _id: "6721de0680f06301f6f10ec9",
-  },
-  {
-    content: "cho tôi đoạn code js ngắn cộng 2 số",
-    sender: "user",
-    _id: "6721de1c80f06301f6f10ed4",
-  },
-  {
-    content: "Hello! How can I help you today?",
-    sender: "model",
-    _id: "6721de0680f06301f6f10ec9",
-  },
-  {
-    content: "cho tôi đoạn code js ngắn cộng 2 số",
-    sender: "user",
-    _id: "6721de1c80f06301f6f10ed4",
-  },
-  {
-    content: "Hello! How can I help you today?",
-    sender: "model",
-    _id: "6721de0680f06301f6f10ec9",
-  },
-  {
-    content: "cho tôi đoạn code js ngắn cộng 2 số",
-    sender: "user",
-    _id: "6721de1c80f06301f6f10ed4",
-  },
-  {
-    content: "Hello! How can I help you today?",
-    sender: "model",
-    _id: "6721de0680f06301f6f10ec9",
-  },
-  {
-    content: "cho tôi đoạn code js ngắn cộng 2 số",
-    sender: "user",
-    _id: "6721de1c80f06301f6f10ed4",
-  },
-  {
-    content: "Hello! How can I help you today?",
-    sender: "model",
-    _id: "6721de0680f06301f6f10ec9",
-  },
-  {
-    content: "cho tôi đoạn code js ngắn cộng 2 số",
-    sender: "user",
-    _id: "6721de1c80f06301f6f10ed4",
-  },
-  {
-    content: "Hello! How can I help you today?",
-    sender: "model",
-    _id: "6721de0680f06301f6f10ec9",
-  },
-  {
-    content: "cho tôi đoạn code js ngắn cộng 2 số",
-    sender: "user",
-    _id: "6721de1c80f06301f6f10ed4",
-  },
-  {
-    content: "Hello! How can I help you today?",
-    sender: "model",
-    _id: "6721de0680f06301f6f10ec9",
-  },
-  {
-    content:
-      "cho tôi đoạn code js ngắn cộcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sốcho tôi đoạn code js ngắn cộng 2 sống 2 số",
-    sender: "user",
-    _id: "6721de1c80f06301f6f10ed4",
-  },
-  {
-    content:
-      "Hello! How can I help you todayello! How can I help you todayello! How can I help you todayello! How can I help you todayello! How can I help you todayello! How can I help you todayello! How can I help you todayello! How can I help you todayello! How can I help you todayello! How can I help you today?",
-    sender: "model",
-    _id: "6721de0680f06301f6f10ec9",
-  },
-];
-
-const chatSessions = [
-  {
-    _id: "6721a712fda5480a74c5f8fb",
-    name: "cai nay rat la daiiiiiiiiiiiiiiiiiiiiiiixxxxxxxxxxxxxxyyyyyyyyyyxx",
-    lastChatTime: "2024-10-31T07:21:29.422Z",
-  },
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-  {
-    _id: "6722fca9846d19e5083fe5c9",
-    name: "xin chào",
-    lastChatTime: "2024-10-31T04:29:02.287Z",
-  },
-
-  // (include other session data here)
-];
+let chatHistory = [];
+let chatSessions = [];
+let sessionId = "";
 
 // Populate chat sessions in sidebar
 function loadChatSessions() {
@@ -327,22 +75,27 @@ function showContextMenu(event, sessionId) {
 }
 
 // Function to handle renaming a chat session
-function renameChatSession(sessionId) {
-  const session = chatSessions.find((s) => s._id === sessionId);
+function renameChatSession(sessionIndex) {
+  const session = chatSessions.find((s) => s._id === sessionIndex);
   const newName = prompt("Enter new name for the chat session:", session.name);
   if (newName) {
-    session.name = newName; // Update the session name
-    loadChatSessions(); // Refresh the chat sessions display
+    putChatName(sessionIndex, newName);
+    session.name = newName;
+    loadChatSessions();
   }
 }
 
 // Function to handle deleting a chat session
-function deleteChatSession(sessionId) {
-  const sessionIndex = chatSessions.findIndex((s) => s._id === sessionId);
-  if (sessionIndex > -1) {
-    if (confirm("Are you sure you want to delete this chat session?")) {
-      chatSessions.splice(sessionIndex, 1); // Remove the session from the array
-      loadChatSessions(); // Refresh the chat sessions display
+async function deleteChatSession(sessionIdAboutToDelete) {
+  const sessionIndex = chatSessions.findIndex(
+    (s) => s._id === sessionIdAboutToDelete
+  );
+  if (confirm("Are you sure you want to delete this chat session?")) {
+    deleteChatSessionById(sessionIdAboutToDelete);
+    chatSessions.splice(sessionIndex, 1); // Remove the session from the array
+    loadChatSessions(); // Refresh the chat sessions display
+    if (sessionId == sessionIdAboutToDelete) {
+      window.location.href = "chat.html";
     }
   }
 }
@@ -352,73 +105,78 @@ const chatMessages = document.getElementById("chat-messages");
 
 // Function to load and display chat history
 function loadChatHistory() {
-  chathistory.forEach((message) => {
-    addMessage(message.sender, message.content);
+  chatHistory.forEach((message) => {
+    if (message.sender === "model") {
+      // Format the model's response content with HTML
+      const formattedContent = renderResponseContent(message.content);
+      addMessage(message.sender, formattedContent, true); // Pass true to indicate HTML
+    } else {
+      // For other senders, display content as is
+      addMessage(message.sender, message.content, false); // Pass false to indicate plain text
+    }
   });
-}
-function handleEnter(event) {
-  if (event.key === "Enter") {
-    sendMessage();
-  }
-}
-
-function sendMessage() {
-  const message = document.getElementById("user-input").value;
-  if (message) {
-    console.log("Message sent:", message);
-    document.getElementById("user-input").value = "";
-  }
 }
 
 // Function to add a message to the chat area
-function addMessage(sender, messageText) {
+function addMessage(sender, messageText, isHTML = false) {
   const messageElement = document.createElement("div");
   messageElement.classList.add("chat-message", sender);
-  messageElement.textContent = messageText;
+  const formattedContent = renderResponseContent(messageText);
+
+  if (isHTML) {
+    // If content is HTML, use innerHTML
+    messageElement.innerHTML = messageText;
+  } else {
+    // For plain text, convert line breaks to <br> elements and use innerHTML safely
+    messageElement.textContent = formattedContent;
+  }
+
   chatMessages.appendChild(messageElement);
   chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the bottom
 }
-function handleProfileClick() {
-  alert("Profile icon clicked!");
-}
 
 // Function to send a message
-function sendMessage() {
+async function sendMessage() {
   const input = document.getElementById("user-input");
   const messageText = input.value.trim();
 
   if (messageText) {
     // Display user message
-    addMessage("user", messageText);
+    addMessage("user", messageText, false);
 
     // Clear input field
     input.value = "";
+    const apiResponse = await generateAPIResponse(messageText);
+    const formattedContent = renderResponseContent(apiResponse);
+
+    console.log("apiress", apiResponse);
 
     // Simulate AI response (you can replace this with real response from backend)
-    setTimeout(
-      () => addMessage("model", "This is a simulated AI response."),
-      1000
-    );
+    setTimeout(() => addMessage("model", formattedContent, true), 1000);
   }
 }
 
 // Load chat history on page load
 // Load chat sessions on page load
-window.onload = () => {
+window.onload = async () => {
+  chatSessions = await fetchAllChatSession();
   loadChatSessions();
-  loadChatHistory(); // Loads initial chat history if desired
+  getSessionId();
+  if (!sessionId) {
+    console.log("No chat sessions found.");
+  } else {
+    chatHistory = await fetchChatHistory(sessionId);
+    loadChatHistory();
+  }
 };
 
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
-  const inputChat = document.getElementById("chat-input");
   // Toggle the display style between 'none' and 'block'
   if (sidebar.style.display === "none" || sidebar.style.display === "") {
     sidebar.style.display = "block"; // Show the sidebar
-    inputChat.style.left = "10%";
   } else {
     sidebar.style.display = "none"; // Hide the sidebar
-    inputChat.style.left = "";
   }
 }
 
@@ -426,29 +184,289 @@ function startNewChat() {
   window.location.href = "chat.html";
 }
 
-// Select the search input by its ID
-const searchInput = document.getElementById("searchInput");
+const DB_URL = `https://sl36qhn5-3000.asse.devtunnels.ms`;
 
-// Add an event listener for keydown event
-searchInput.addEventListener("keydown", function (event) {
-  // Check if the Enter key was pressed
-  if (event.key === "Enter") {
-    // Prevent the default behavior (if necessary)
-    event.preventDefault();
-
-    // Get the value of the input
-    const searchQuery = searchInput.value.trim();
-
-    // Trigger the search function or handle the search query
-    if (searchQuery) {
-      performSearch(searchQuery);
+const fetchAllChatSession = async () => {
+  try {
+    const response = await fetch(`${DB_URL}/chat/all`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+    console.log("aaqaa", response);
+    if (response.status === 401) {
+      window.location.href = "login-register.html";
     }
-  }
-});
 
-// Example function to handle the search
-function performSearch(query) {
-  console.log(`Searching for: ${query}`);
-  // Add your search functionality here
-  // e.g., sending a request to the server or filtering results
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching chat history:", error.message);
+    return null;
+  }
+};
+
+const fetchChatHistory = async (sessionId) => {
+  try {
+    const response = await fetch(`${DB_URL}/chat/${sessionId}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+
+    if (!response.ok)
+      throw new Error("Failed to fetch chat history from database.");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching chat history:", error.message);
+    return null;
+  }
+};
+
+const saveChatHistoryToDB = async (userMessage, apiResponse, sessionId) => {
+  try {
+    const response = await fetch(`${DB_URL}/chat`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        modelMessage: apiResponse,
+        userMessage: userMessage,
+        sessionId: sessionId || "",
+      }),
+      credentials: "include",
+    });
+
+    if (sessionId === null) {
+      const data = await response.json();
+      const newSessionId = data.sessionId;
+      if (newSessionId) {
+        window.location.href = `?id=${newSessionId}`;
+      } else {
+        console.error("No session ID received from the server.");
+      }
+    }
+
+    if (!response.ok)
+      throw new Error("Failed to save chat history to database.");
+    console.log("Chat history saved successfully.");
+  } catch (error) {
+    console.error("Error saving chat history:", error.message);
+  }
+};
+
+const deleteChatSessionById = async (sessionId) => {
+  try {
+    const response = await fetch(`${DB_URL}/chat/${sessionId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+
+    if (!response.ok)
+      throw new Error("Failed to delete chat history from database.");
+    console.log("Chat history deleted successfully.");
+  } catch (error) {
+    console.error("Error deleting chat history:", error.message);
+  }
+};
+
+const putChatName = async (sessionId, chatName) => {
+  try {
+    const response = await fetch(`${DB_URL}/chat/${sessionId}/`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: chatName }),
+      credentials: "include",
+    });
+
+    if (!response.ok)
+      throw new Error("Failed to update chat history to database.");
+    console.log("Chat's name updated successfully.");
+  } catch (error) {
+    console.error("Error updating chat history:", error.message);
+  }
+};
+
+function handleProfileClick() {
+  alert("Profile icon clicked!");
+}
+
+function handleEnter(event) {
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+}
+
+const getSessionId = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  sessionId = urlParams.get("id");
+};
+
+let isResponseGenerating = false;
+const API_KEY = "AIzaSyBdYLdODJARjAxYlBcuwkieajDcZrnUYA0";
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+
+const generateAPIResponse = async (messageText) => {
+  let apiHistory = { contents: [] };
+  if (sessionId) {
+    const apiData = await fetchChatHistory(sessionId);
+    apiHistory = formatMessages(apiData);
+  }
+
+  try {
+    apiHistory.contents.push({
+      role: "user",
+      parts: [{ text: messageText }],
+    });
+
+    console.log("User message sent:", apiHistory);
+
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(apiHistory),
+    });
+
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error.message);
+
+    const apiResponse = data?.candidates[0].content.parts[0].text.replace(
+      /\*\*(.*?)\*\*/g,
+      "$1"
+    );
+
+    console.log("répon", apiResponse);
+
+    saveChatHistoryToDB(messageText, apiResponse, sessionId);
+    // fetchSuggestions();
+    return apiResponse;
+  } catch (error) {
+    // textElement.innerText = error.message;
+    // textElement.parentElement.closest(".message").classList.add("error");
+    console.log("error");
+  }
+  //   finally {
+  //     isResponseGenerating = false;
+  //     messageText.classList.remove("loading");
+  //   }
+};
+
+const fetchSuggestions = async () => {
+  let apiHistory = { contents: [] };
+  const apiData = await fetchChatHistory(sessionId);
+  apiHistory = formatMessages(apiData);
+
+  try {
+    apiHistory.contents.push({
+      role: "user",
+      parts: [
+        {
+          text: "Give me 3 searchable title suggestions with the content of the chat",
+        },
+      ],
+    });
+
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(apiHistory),
+    });
+
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error.message);
+
+    const suggestions = [];
+    data.candidates.forEach((candidate) => {
+      const suggestion = candidate.content.parts[0].text.replace(
+        /\*\*(.*?)\*\*/g,
+        "$1"
+      );
+      suggestions.push(suggestion);
+    });
+    console.log("suggest", suggestions);
+    return suggestions;
+  } catch (error) {
+    textElement.innerText = error.message;
+    textElement.parentElement.closest(".message").classList.add("error");
+  }
+};
+
+const renderResponseContent = (response) => {
+  const codeBlockRegex = /```(\w+)?\n([\s\S]*?)```/g;
+  const inlineCodeRegex = /`([^`]+)`/g;
+
+  const escapeHTML = (str) => {
+    return str.replace(/[&<>"']/g, (match) => {
+      const escapeChars = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      };
+      return escapeChars[match];
+    });
+  };
+
+  const tempElement = document.createElement("div");
+  let lastIndex = 0;
+
+  response.replace(codeBlockRegex, (match, language, code, offset) => {
+    if (offset > lastIndex) {
+      const textNode = document.createTextNode(
+        response.slice(lastIndex, offset)
+      );
+      tempElement.appendChild(textNode);
+    }
+
+    const pre = document.createElement("pre");
+    const codeElement = document.createElement("code");
+    codeElement.className = `language-${
+      language ? language.trim() : "plaintext"
+    }`;
+    codeElement.textContent = code.trim();
+    pre.appendChild(codeElement);
+    tempElement.appendChild(pre);
+
+    lastIndex = offset + match.length;
+  });
+
+  if (lastIndex < response.length) {
+    const remainingText = response.slice(lastIndex);
+    const textNode = document.createTextNode(remainingText);
+    tempElement.appendChild(textNode);
+  }
+
+  let finalHTML = tempElement.innerHTML;
+  finalHTML = finalHTML.replace(inlineCodeRegex, (match, code) => {
+    return `<code>${escapeHTML(code.trim())}</code>`;
+  });
+
+  finalHTML = finalHTML.replace(/\n/g, "<br>");
+
+  return finalHTML;
+};
+
+function formatMessages(input) {
+  const output = {
+    contents: [],
+  };
+
+  const messageMap = {
+    user: { role: "user", parts: [] },
+    model: { role: "model", parts: [] },
+  };
+
+  input.forEach((message) => {
+    const { content, sender, sessionId } = message;
+    if (messageMap[sender]) {
+      messageMap[sender].parts.push({ text: content });
+    }
+  });
+
+  output.contents.push(messageMap.user);
+  output.contents.push(messageMap.model);
+
+  return output;
 }

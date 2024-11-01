@@ -3,8 +3,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Poppins", serif;
-  font-style: normal;
+  font-family:  Arial, Helvetica, sans-serif;
+  
 }
 
 body,
@@ -174,7 +174,7 @@ html {
   background: none;
   cursor: pointer;
   font-size: 58px;
-  transform: translate(-54px, -10px);
+  transform: translate(-54px, -4px);
 }
 #sidebar-toggle .sidebarBtn {
   position: absolute;
@@ -331,4 +331,22 @@ ul div li {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+code {
+  background-color: #424242;
+  border-radius: 4px;
+  color:  rgb(53, 166, 197);
+  font-family: monospace;
+}
+
+pre {
+  background-color: #000000;
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+strong {  
+  font-weight: bold;
 }
