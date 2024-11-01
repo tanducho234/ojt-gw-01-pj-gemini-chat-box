@@ -14,9 +14,14 @@ module.exports.getChatSessionById = async (req, res) => {
     if (!chatSession) {
       return res.status(404).json({ message: "Chat session not found" });
     }
-    res.status(200).json(chatSession.messages);
+    const messages = chatSession.messages.map(msg => ({
+      content: msg.content,
+      sender: msg.sender
+    }));
+    res.status(200).json(messages);
   } catch (e) {
-    errorHandler(res, e);
+    return res.status(404).json({ message: "loi j do" });
+    // errorHandler(res, e);
   }
 };
 

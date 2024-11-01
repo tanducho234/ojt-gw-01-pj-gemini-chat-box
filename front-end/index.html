@@ -1,33 +1,40 @@
 <body>
-    <a href="welcome.html">Go to Welcome Page</a>
-    <a href="login-register.html">Go to Login/Register Page</a>
-    <a href="profile.html">Go to Profile Page</a>
-    <a href="#" id="logout-link">Log Out</a> <!-- Logout link -->
+  <a href="welcome.html">Go to Welcome Page</a>
+  <a href="login-register.html">Go to Login/Register Page</a>
+  <a href="profile.html">Go to Profile Page</a>
+  <button id="logout-button">Log Out</button>
 
-    <script>
-        document.getElementById("logout-link").addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent default link behavior
+  <script>
+    document
+      .getElementById("logout-button")
+      .addEventListener("click", async function (event) {
+        event.preventDefault(); // Prevent default button behavior
+        console.log("logout")
 
-            // // Clear cookies by setting them to expired
-            // document.cookie.split(";").forEach(function(c) {
-            //     document.cookie = c.split("=")[0] + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"; 
-            // });
+        // // Clear cookies by setting them to expired
+        // document.cookie.split(";").forEach(function (c) {
+        //   document.cookie = c.split("=")[0] + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+        // });
 
-            // Optionally, you can make a request to log out on the server
-            fetch("/logout", { method: "POST", credentials: "include" })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = "login-register.html"; // Redirect after logout
-                } else {
-                    console.error("Logout failed:", response.statusText);
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
+        // Make a request to log out on the server
+        try {
+          const response = await fetch("https://sl36qhn5-3000.asse.devtunnels.ms/logout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+          });
 
-            // Redirect to login/register page immediately after clearing cookies
-            window.location.href = "login-register.html"; // Change this as needed
-        });
-    </script>
+          if (!response.ok) {
+            throw new Error('Logout failed');
+          }
+
+          const result = await response.json();
+          console.log(JSON.stringify(result));
+
+          // Redirect to login/register page after logging out
+        //   window.location.href = "login-register.html";
+        } catch (error) {
+          console.error('Error during logout:', error);
+        }
+      });
+  </script>
 </body>
