@@ -10,44 +10,61 @@ dotenv.config();
 const secretKey = process.env.JWT_SECRET;
 
 module.exports.login = async function (req, res) {
-  const candidate = await User.findOne({ email: req.body.email });
-  console.log(req.body);
-  if (candidate) {
-    const passwordResult = bcrypt.compareSync(
-      req.body.password,
-      candidate.password
-    );
-    if (passwordResult) {
-      const token = jwt.sign(
-        {
-          email: candidate.email,
-          userId: candidate._id,
-        },
-        secretKey,
-        { expiresIn: "12h" }
-      );
-      // res save to cookie
-      res.cookie("jwt", token, {
-        httpOnly: true,
-        maxAge: 12 * 3600 * 1000,
-        secure: true, // Only set to true if testing over HTTPS
-        sameSite: "None",
+  try {
+    const { email, password } = req.body;
+
+    // Validate request body
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "Email and password are required",
       });
-      res.status(200).json({
-        token: `Bearer ${token}`,
+    }
+
+    // Find the user by email
+    const candidate = await User.findOne({ email });
+    if (!candidate) {
+      return res.status(401).json({
+        message: "User with this email not found",
       });
-    } else {
-      res.status(401).json({
+    }
+
+    // Compare the password
+    const passwordResult = await bcrypt.compare(password, candidate.password);
+    if (!passwordResult) {
+      return res.status(401).json({
         message: "Invalid password",
       });
     }
-  } else {
-    res.status(404).json({
-      message: "User with this email not found",
+
+    // Generate a JWT token
+    const token = jwt.sign(
+      {
+        email: candidate.email,
+        userId: candidate._id,
+      },
+      secretKey,
+      { expiresIn: "12h" }
+    );
+
+    // Save token to cookie
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      maxAge: 12 * 3600 * 1000,
+      secure: true,
+      sameSite: "None",
+    });
+
+    // Respond with the token
+    res.status(200).json({
+      token: `Bearer ${token}`,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Internal server error",
     });
   }
 };
-
 module.exports.register = async function (req, res) {
   console.log(req.body.email);
 
