@@ -59,6 +59,23 @@ body {
   margin-top: 10px;
   cursor: pointer;
 }
+#back-home-btn{
+  background-color: #b40d15;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+#back-home-btn:hover{
+  background-color: #ba3a41;
+}
 .container button:hover {
   background-color: #4561ad;
 }

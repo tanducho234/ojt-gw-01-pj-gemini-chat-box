@@ -206,6 +206,7 @@ function toggleSidebar() {
     inputChat.style.left = "";
   }
 }
+
 function startNewChat() {
   window.location.href = "chat.html";
 }

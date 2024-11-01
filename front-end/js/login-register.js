@@ -9,6 +9,9 @@ registerBtn.addEventListener("click", () => {
 loginBtn.addEventListener("click", () => {
   container.classList.remove("active");
 });
+function handleBackHomeClick() {
+  window.location.href = "welcome.html";
+}
 
 document
   .getElementById("registrationForm")
