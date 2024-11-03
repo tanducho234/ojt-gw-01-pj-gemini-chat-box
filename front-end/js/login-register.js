@@ -42,7 +42,7 @@ document
 
       try {
         const response = await fetch(
-          "https://sl36qhn5-3000.asse.devtunnels.ms/register",
+          "https://ojt-gw-01-pj-gemini-chat-box.vercel.app/register",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -79,7 +79,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const password = document.getElementById("loginPassword").value;
 
   const response = await fetch(
-    "https://sl36qhn5-3000.asse.devtunnels.ms/login",
+    "https://ojt-gw-01-pj-gemini-chat-box.vercel.app/login",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

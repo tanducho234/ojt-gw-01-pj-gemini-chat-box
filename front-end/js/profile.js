@@ -19,13 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let isEditing = false;
 
-  fetch("https://sl36qhn5-3000.asse.devtunnels.ms/users/profile", {
+  fetch("https://ojt-gw-01-pj-gemini-chat-box.vercel.app/users/profile", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
     credentials: "include", // Ensures cookies are sent with the request
   })
     .then((response) => {
-      if (response.status===401) {
+      if (response.status === 401) {
         window.location.href = "login-register.html"; // Redirect to the URL provided in the response
         return;
       }
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Send POST request with updated data
-      fetch("https://sl36qhn5-3000.asse.devtunnels.ms/users/profile", {
+      fetch("https://ojt-gw-01-pj-gemini-chat-box.vercel.app/users/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -176,7 +176,7 @@ document.getElementById("exportBtn").addEventListener("click", function () {
 
 document.getElementById("logOutBtn").addEventListener("click", function () {
   // Clear the JWT cookie
-  fetch("https://sl36qhn5-3000.asse.devtunnels.ms/logout", {
+  fetch("https://ojt-gw-01-pj-gemini-chat-box.vercel.app/logout", {
     method: "post",
     headers: { "Content-Type": "application/json" },
     credentials: "include", // Ensures cookies are sent with the request

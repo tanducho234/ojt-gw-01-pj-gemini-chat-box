@@ -1,5 +1,9 @@
 const suggestions = document.querySelectorAll(".suggestion");
 const input = document.getElementById("user-input");
+const header = document.querySelector(".header");
+
+const submitChatIcon = document.getElementById("submit-chat-icon");
+const sendMessageButton = document.getElementById("sendMessageBtn");
 
 // Sample chat history array
 let chatHistory = [];
@@ -124,11 +128,11 @@ function typeWriter(element, content, speed) {
   let index = 0;
 
   function type() {
-      if (index < content.length) {
-          element.textContent += content.charAt(index);
-          index++;
-          setTimeout(type, speed);
-      }
+    if (index < content.length) {
+      element.textContent += content.charAt(index);
+      index++;
+      setTimeout(type, speed);
+    }
   }
 
   type();
@@ -139,7 +143,6 @@ function addMessage(sender, messageText, isHTML = false) {
   const messageElement = document.createElement("div");
   messageElement.classList.add("chat-message", sender);
   const formattedContent = renderResponseContent(messageText);
-
   if (isHTML) {
     // If content is HTML, use innerHTML
     messageElement.innerHTML = messageText;
@@ -154,7 +157,8 @@ function addMessage(sender, messageText, isHTML = false) {
 
 suggestions.forEach((suggestion) => {
   suggestion.addEventListener("click", () => {
-    const userMessage = suggestion.querySelector(".text").innerText;    
+    header.style.display = "none";
+    const userMessage = suggestion.querySelector(".text").innerText;
     input.value = userMessage;
     sendMessage();
   });
@@ -162,19 +166,45 @@ suggestions.forEach((suggestion) => {
 
 // Function to send a message
 async function sendMessage() {
-  // const input = document.getElementById("user-input");
   const messageText = input.value.trim();
-
+  console.log(messageText);
+  console.log("aaa",sessionId)
+  if (!sessionId) {
+    header.style.display = "none";
+  }
   if (messageText) {
     // Display user message
     addMessage("user", messageText, false);
 
     // Clear input field
     input.value = "";
-    const apiResponse = await generateAPIResponse(messageText);
-    const formatMessages = renderResponseContent(apiResponse);
-    // Simulate AI response (you can replace this with real response from backend)
-    setTimeout(() => addMessage("model", formatMessages, true), 1000);
+
+    // Disable the button
+    sendMessageButton.disabled = true;
+    input.disabled = true;
+
+    // Change image to loading state
+    submitChatIcon.src = "images/line-md--loading-loop.png";
+    submitChatIcon.classList.add("rotate");
+
+    try {
+      const apiResponse = await generateAPIResponse(messageText);
+      const formatMessages = renderResponseContent(apiResponse);
+      // Display AI response
+      addMessage("model", formatMessages, true);
+    } catch (error) {
+      console.error("Error generating API response:", error);
+      // Optionally handle error
+    } finally {
+      // Restore original image and remove rotation
+      submitChatIcon.src = "images/ion--arrow-forward-circle.png";
+      submitChatIcon.classList.remove("rotate");
+
+      // Re-enable the button
+      sendMessageButton.disabled = false;
+      input.disabled = false;
+      input.focus();
+    }
   }
 }
 
@@ -186,7 +216,6 @@ window.onload = async () => {
   getSessionId();
   if (!sessionId) {
     console.log("No chat sessions found.");
-    const header = document.querySelector(".header");
     header.style.display = "block";
   } else {
     chatHistory = await fetchChatHistory(sessionId);
@@ -211,7 +240,7 @@ function startNewChat() {
   window.location.href = "chat.html";
 }
 
-const DB_URL = `https://sl36qhn5-3000.asse.devtunnels.ms`;
+const DB_URL = `https://ojt-gw-01-pj-gemini-chat-box.vercel.app`;
 
 const fetchAllChatSession = async () => {
   try {
@@ -268,7 +297,10 @@ const saveChatHistoryToDB = async (userMessage, apiResponse, sessionId) => {
       const data = await response.json();
       const newSessionId = data.sessionId;
       if (newSessionId) {
-        window.location.href = `?id=${newSessionId}`;
+        // window.location.href = `?id=${newSessionId}`;
+        sessionId = newSessionId;
+        chatSessions = await fetchAllChatSession();
+        loadChatSessions();
       } else {
         console.error("No session ID received from the server.");
       }
