@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const chatSessionController = require("../controllers/chatSessionController");
 
+router.get("/export", chatSessionController.exportData);
+
 //get all chat session by userid
 router.get("/all", chatSessionController.getChatSessionByUserId);
 
@@ -15,7 +17,7 @@ router.delete("/:id", chatSessionController.deleteChatSession);
 
 //add new message to chat session
 router.post("/", chatSessionController.addMessagesToChatSession);
-// router.get("/export", chatSessionController.exportData);
+
 
 
 
