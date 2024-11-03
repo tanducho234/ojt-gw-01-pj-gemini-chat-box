@@ -30,6 +30,7 @@ function loadChatSessions() {
     const buttonElement = document.createElement("button");
     buttonElement.textContent = "...";
     buttonElement.style.cursor = "pointer";
+    buttonElement.style.paddingLeft = "10px"; // Add left padding
     buttonElement.onclick = (e) => {
       e.stopPropagation(); // Prevent the click from triggering the session click
       showContextMenu(e, session._id);
@@ -82,11 +83,11 @@ function showContextMenu(event, sessionId) {
 }
 
 // Function to handle renaming a chat session
-function renameChatSession(sessionIndex) {
+async function renameChatSession(sessionIndex) {
   const session = chatSessions.find((s) => s._id === sessionIndex);
   const newName = prompt("Enter new name for the chat session:", session.name);
   if (newName) {
-    putChatName(sessionIndex, newName);
+    await putChatName(sessionIndex, newName);
     session.name = newName;
     loadChatSessions();
   }
@@ -97,8 +98,8 @@ async function deleteChatSession(sessionIdAboutToDelete) {
   const sessionIndex = chatSessions.findIndex(
     (s) => s._id === sessionIdAboutToDelete
   );
-  if (confirm("Are you sure you want to delete this chat session?")) {
-    deleteChatSessionById(sessionIdAboutToDelete);
+  if (confirm(`Are you sure you want to delete this chat session?`)) {
+    await deleteChatSessionById(sessionIdAboutToDelete);
     chatSessions.splice(sessionIndex, 1); // Remove the session from the array
     loadChatSessions(); // Refresh the chat sessions display
     if (sessionId == sessionIdAboutToDelete) {
@@ -280,7 +281,7 @@ const fetchChatHistory = async (sessionId) => {
   }
 };
 
-const saveChatHistoryToDB = async (userMessage, apiResponse, sessionId) => {
+const saveChatHistoryToDB = async (userMessage, apiResponse) => {
   try {
     const response = await fetch(`${DB_URL}/chat`, {
       method: "POST",
@@ -292,8 +293,7 @@ const saveChatHistoryToDB = async (userMessage, apiResponse, sessionId) => {
       }),
       credentials: "include",
     });
-
-    if (sessionId === null) {
+    if (!sessionId) {
       const data = await response.json();
       const newSessionId = data.sessionId;
       if (newSessionId) {
@@ -397,7 +397,7 @@ const generateAPIResponse = async (messageText) => {
 
     console.log("répon", apiResponse);
 
-    saveChatHistoryToDB(messageText, apiResponse, sessionId);
+    saveChatHistoryToDB(messageText, apiResponse);
     // fetchSuggestions();
     return apiResponse;
   } catch (error) {
