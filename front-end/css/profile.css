@@ -1,7 +1,8 @@
 /* General Styles */
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #333333, #004f7a);
+  background: radial-gradient(circle, #0a0c11 0%, #0f121a 50%, #1a2735 100%);
+
   margin: 0;
   padding: 20px;
   min-height: 100vh;
@@ -18,7 +19,7 @@ body {
 
 /* Profile Card */
 .profile-card {
-  background: linear-gradient(to right, #000000, #003959);
+  background: radial-gradient(circle, #0a0c11 0%, #0f121a 50%, #1a2735 100%);
   border-radius: 10px;
   padding: 30px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -26,7 +27,7 @@ body {
 
 .profile-card h1 {
   text-align: center;
-  color: #A0C8FF;
+  color: #a0c8ff;
   font-weight: bold;
   margin-bottom: 30px;
   font-size: 50px;
@@ -81,20 +82,23 @@ body {
 .form-group label {
   display: block;
   margin-bottom: 5px;
-  color: #A0C8FF;
+  color: #dfebfc;
   font-weight: bold;
-  
 }
 
 .form-group input {
+  background-color: #eeeeee;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-size: 18px;
+  border-radius: 8px;
   width: 100%;
-  padding: 10px;
-  border: 2px solid #00679f;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: #003e60;
-  color: white;
+  outline: none;
 }
+/* .form-group input:hover{
+  border: solid 1px #3abfe7;
+} */
 
 /* Password Fields */
 #passwordFields {
@@ -131,7 +135,7 @@ body {
 /* Action Buttons */
 .action-buttons {
   display: flex;
-  justify-content: center; /* Center align the buttons */
+  justify-content: space-between; /* Center align the buttons */
   margin-top: 20px; /* Space above the buttons */
   gap: 20px; /* Space between the buttons */
 }
@@ -144,54 +148,335 @@ body {
 }
 
 .edit-btn {
-  background-color: #003e60;
-  color: white;
-  border: 2px solid #00679f;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: background-color 0.3s, border-color 0.3s; /* Include border color in transition */
+  background-color: #1a2735;
+  color: #fff;
+  font-size: 16px;
+  padding: 0px 30px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer; /* Include border color in transition */
+}
+.edit-btn span{
+  vertical-align: left;
 }
 
 .edit-btn:hover {
-  background: #357abd; /* Hover effect */
-  border-color: #A0C8FF; /* Change border color on hover */
+  background: #0e4881; /* Hover effect */
 }
 
 .export-btn {
-  background-color: #003e60;
-  color: white;
-  border: 2px solid #00679f;
-  border-radius: 5px;
-  padding: 10px 20px;
+  background-color: #1a2735;
+  color: #fff;
+  font-size: 16px;
+  padding: 0px 30px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: background-color 0.3s;
+}
+.export-btn span {
+  font-size: 18px;
+  vertical-align: middle;
 }
 
 .export-btn:hover {
-  background: #357abd; /* Hover effect */
+  background: #0e4881; /* Hover effect */
 }
 
-
 .logout-btn {
-  background-color: red;
-  color: white;
-  border: 2px solid #00679f;
-  border-radius: 5px;
-  padding: 10px 20px;
+  background-color: #3c6eecb8;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 30px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: background-color 0.3s;
+}
+.logout-btn span {
+  font-size: 18px;
+  vertical-align: middle;
 }
 
 .logout-btn:hover {
-  background: #357abd; /* Hover effect */
+  background: #d70a0aa6; /* Hover effect */
+}
+.backBtn {
+  background-color: #063f7d;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 30px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.backBtn:hover {
+  background-color: #d70a0aa6;
+}
+.backBtn span {
+  font-size: 18px;
+  vertical-align: middle;
+}
+@media (max-width: 1024px) {
+  .container {
+    width: 80%;
+  }
+}
+@media (max-width: 758px) {
+  #profileImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  .edit-btn {
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 0px 10px;
+    gap: 2px;
+  }
+  .edit-btn span {
+    font-size: 12px;
+  }
+  .export-btn {
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    gap: 2px;
+  }
+  .export-btn span {
+    font-size: 14px;
+  }
+  .logout-btn {
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 0px 10px;
+    gap: 2px;
+  }
+  .logout-btn span {
+    font-size: 14px;
+  }
+  .backBtn {
+    font-size: 14px;
+    padding: 10px 30px;
+    margin-bottom: 40px;
+  }
+  .backBtn span {
+    font-size: 12px;
+    vertical-align: middle;
+  }
+  .action-buttons {
+    margin-bottom: 30px;
+  }
+  .profile-card h1 {
+    text-align: center;
+    color: #a0c8ff;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 30px;
+  }
+}
+@media (max-width: 600px) {
+  #profileImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  .edit-btn {
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 0px 10px;
+    gap: 2px;
+  }
+  .edit-btn span {
+    font-size: 12px;
+  }
+  .export-btn {
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    gap: 2px;
+  }
+  .export-btn span {
+    font-size: 14px;
+  }
+  .logout-btn {
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 0px 10px;
+    gap: 2px;
+  }
+  .logout-btn span {
+    font-size: 14px;
+  }
+  .backBtn {
+    font-size: 14px;
+    padding: 10px 30px;
+    margin-bottom: 20px;
+  }
+  .backBtn span {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  .action-buttons {
+    margin-bottom: 30px;
+  }
+  .profile-card h1 {
+    text-align: center;
+    color: #a0c8ff;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 25px;
+  }
+}
+@media (max-width: 450px) {
+  #profileImage {
+    width: 130px;
+    height: 130px;
+  }
+  .edit-btn {
+    font-size: 8px;
+    border-radius: 5px;
+    padding: 4px 10px;
+    gap: 2px;
+  }
+  .edit-btn span {
+    font-size: 12px;
+    display: none;
+  }
+  .export-btn {
+    font-size: 8px;
+    border-radius: 5px;
+    padding: 4px 10px;
+    gap: 2px;
+  }
+  .export-btn span {
+    font-size: 14px;
+    display: none;
+  }
+  .logout-btn {
+    font-size: 8px;
+    border-radius: 5px;
+    padding: 4px 10px;
+    gap: 2px;
+  }
+  .logout-btn span {
+    font-size: 14px;
+    display: none;
+  }
+  .backBtn {
+    font-size: 8px;
+    width: 80px;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+  }
+  .backBtn span {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  .action-buttons {
+    margin-bottom: 30px;
+  }
+  .profile-card h1 {
+    text-align: center;
+    color: #a0c8ff;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+  .form-group input {
+    background-color: #eeeeee;
+    border: none;
+    margin: 6px 0;
+    padding: 5px 15px;
+    font-size: 14px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+}
+@media (max-width: 375px) {
+  #profileImage {
+    width: 100px;
+    height: 100px;
+  }
+  .edit-btn {
+    font-size: 8px;
+    border-radius: 5px;
+    padding: 4px 10px;
+    gap: 2px;
+  }
+  .edit-btn span {
+    font-size: 12px;
+    display: none;
+  }
+  .export-btn {
+    font-size: 8px;
+    border-radius: 5px;
+    padding: 4px 10px;
+    gap: 2px;
+  }
+  .export-btn span {
+    font-size: 14px;
+    display: none;
+  }
+  .logout-btn {
+    font-size: 8px;
+    border-radius: 5px;
+    padding: 4px 10px;
+    gap: 2px;
+  }
+  .logout-btn span {
+    font-size: 14px;
+    display: none;
+  }
+  .backBtn {
+    font-size: 8px;
+    width: 80px;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+  }
+  .backBtn span {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  .action-buttons {
+    margin-bottom: 30px;
+  }
+  .profile-card h1 {
+    text-align: center;
+    color: #a0c8ff;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 25px;
+  }
+  .form-group input {
+    background-color: #eeeeee;
+    border: none;
+    margin: 6px 0;
+    padding: 5px 15px;
+    font-size: 14px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
 }

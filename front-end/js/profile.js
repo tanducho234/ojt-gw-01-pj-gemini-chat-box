@@ -111,23 +111,42 @@ document.addEventListener("DOMContentLoaded", function () {
     isEditing = !isEditing;
   });
   exportBtn.addEventListener("click", function () {
-    // Create JSON data
-    const profileData = {
-      name: nameField.value,
-      email: emailField.value,
-    };
-
-    // Convert data to JSON and create a downloadable file
-    const dataStr =
-      "data:text/json;charset=utf-8," +
-      encodeURIComponent(JSON.stringify(profileData, null, 2));
-    const downloadAnchor = document.createElement("a");
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", "profile_data.json");
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    document.body.removeChild(downloadAnchor);
+    // Show a confirmation dialog
+    const confirmDownload = confirm("Are you sure you want to download the profile data?");
+    
+    // If the user confirms, proceed with the download
+    if (confirmDownload) {
+      fetch("https://ojt-gw-01-pj-gemini-chat-box.vercel.app/chat/export", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", // Ensures cookies are sent with the request
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((profileData) => {
+          // Convert data to JSON format and create a downloadable file
+          const dataStr =
+            "data:text/json;charset=utf-8," +
+            encodeURIComponent(JSON.stringify(profileData, null, 2));
+          const downloadAnchor = document.createElement("a");
+          downloadAnchor.setAttribute("href", dataStr);
+          downloadAnchor.setAttribute("download", "profile_data.json");
+          document.body.appendChild(downloadAnchor);
+          downloadAnchor.click();
+          document.body.removeChild(downloadAnchor);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch data:", error);
+        });
+    } else {
+      alert("Download canceled.");
+    }
   });
+  
 
   // Update profile image
   function updateProfileImage(src) {
@@ -163,16 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize
 });
 
-document.getElementById("exportBtn").addEventListener("click", function () {
-  const userResponse = confirm("Are you sure you want to export?");
 
-  if (userResponse) {
-    alert("You chose Yes.");
-    // Add your export logic here
-  } else {
-    alert("You chose No.");
-  }
-});
 
 document.getElementById("logOutBtn").addEventListener("click", function () {
   // Clear the JWT cookie
@@ -194,3 +204,6 @@ document.getElementById("logOutBtn").addEventListener("click", function () {
   console.log("Logout button clicked");
   // Optionally, redirect the user or update the UI
 });
+function handleBackChatClick() {
+  window.location.href = "chat.html";
+}

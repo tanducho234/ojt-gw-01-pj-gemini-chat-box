@@ -169,7 +169,7 @@ suggestions.forEach((suggestion) => {
 async function sendMessage() {
   const messageText = input.value.trim();
   console.log(messageText);
-  console.log("aaa",sessionId)
+  console.log("aaa", sessionId);
   if (!sessionId) {
     header.style.display = "none";
   }
