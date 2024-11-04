@@ -257,15 +257,65 @@ window.onload = async () => {
 };
 
 function toggleSidebar() {
+  console.log("toggleSidebar()");
   const sidebar = document.getElementById("sidebar");
   const inputChat = document.getElementById("chat-input");
+  const chatArena = document.getElementById("chat-area");
+
   // Toggle the display style between 'none' and 'block'
-  if (sidebar.style.display === "none" || sidebar.style.display === "") {
-    sidebar.style.display = "block"; // Show the sidebar
-    inputChat.style.left = "10%";
-  } else {
-    sidebar.style.display = "none"; // Hide the sidebar
-    inputChat.style.left = "";
+  // if (sidebar.style.display === "none" || sidebar.style.display === "") {
+  //   sidebar.style.display = "block"; // Show the sidebar
+  //   inputChat.style.left = "10%";
+  //   chatArena.style.width = "80%";
+
+  // } else {
+  //   sidebar.style.display = "none"; // Hide the sidebar
+  //   inputChat.style.left = "";
+  //   chatArena.style.width = "100%";
+
+  // }
+  const width = window.innerWidth;
+
+  switch (true) {
+    case width < 768: // Mobile
+      if (sidebar.style.display === "none" || sidebar.style.display === "") {
+        sidebar.style.display = "block"; // Show the sidebar
+        chatArena.style.display = "none";
+        inputChat.style.left = "10%";
+        sidebar.style.width = "100%"; // Show the sidebar
+      } else {
+        chatArena.style.display = "block";
+        chatArena.style.width = "100%";
+        sidebar.style.display = "none"; // Hide the sidebar
+        inputChat.style.left = "";
+      }
+      break;
+
+    case width >= 768 && width < 1024: // Tablet
+    if (sidebar.style.display === "none" || sidebar.style.display === "") {
+      sidebar.style.display = "block"; // Show the sidebar
+      inputChat.style.left = "15%";
+      sidebar.style.width = "30%"; // Show the sidebar
+      chatArena.style.width = "70%";
+    } else {
+      chatArena.style.display = "block";
+      chatArena.style.width = "100%";
+      sidebar.style.display = "none"; // Hide the sidebar
+      inputChat.style.left = "0%";
+    }
+      break;
+
+    default: // Desktop/Web
+      if (sidebar.style.display === "none") {
+        sidebar.style.display = "block"; // Show the sidebar
+        inputChat.style.left = "10%";
+        chatArena.style.width = "80%";
+      } else {
+        sidebar.style.display = "none"; // Hide the sidebar
+        inputChat.style.left = "0%";
+        chatArena.style.width = "100%";
+      }
+      break;
   }
 }
 
