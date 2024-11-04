@@ -10,6 +10,38 @@ let chatHistory = [];
 let chatSessions = [];
 let sessionId = "";
 
+// Function to display the search results in the <ul> element
+const displaySearchResults = (results) => {
+  const resultsContainer = document.getElementById("chat-sessions");
+  resultsContainer.innerHTML = ""; // Clear previous results
+
+  if (results.length === 0) {
+    const noResultItem = document.createElement("li");
+    noResultItem.textContent = "No matches found";
+    resultsContainer.appendChild(noResultItem);
+    return;
+  }
+
+  // Display each matching chat session as an <li> item
+  results.forEach((session) => {
+    const sessionItem = document.createElement("li");
+    sessionItem.textContent = session.name;
+    resultsContainer.appendChild(sessionItem);
+  });
+};
+
+const filterChatSessions = (searchTerm) => {
+  return chatSessions.filter((session) =>
+    session.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+};
+
+document.getElementById("searchInput").addEventListener("input", (event) => {
+  const searchTerm = event.target.value;
+  const results = filterChatSessions(searchTerm);
+  displaySearchResults(results);
+});
+
 // Populate chat sessions in sidebar
 function loadChatSessions() {
   const chatSessionsContainer = document.getElementById("chat-sessions");
@@ -225,15 +257,65 @@ window.onload = async () => {
 };
 
 function toggleSidebar() {
+  console.log("toggleSidebar()");
   const sidebar = document.getElementById("sidebar");
   const inputChat = document.getElementById("chat-input");
+  const chatArena = document.getElementById("chat-area");
+
   // Toggle the display style between 'none' and 'block'
-  if (sidebar.style.display === "none" || sidebar.style.display === "") {
-    sidebar.style.display = "block"; // Show the sidebar
-    inputChat.style.left = "10%";
-  } else {
-    sidebar.style.display = "none"; // Hide the sidebar
-    inputChat.style.left = "";
+  // if (sidebar.style.display === "none" || sidebar.style.display === "") {
+  //   sidebar.style.display = "block"; // Show the sidebar
+  //   inputChat.style.left = "10%";
+  //   chatArena.style.width = "80%";
+
+  // } else {
+  //   sidebar.style.display = "none"; // Hide the sidebar
+  //   inputChat.style.left = "";
+  //   chatArena.style.width = "100%";
+
+  // }
+  const width = window.innerWidth;
+
+  switch (true) {
+    case width < 768: // Mobile
+      if (sidebar.style.display === "none" || sidebar.style.display === "") {
+        sidebar.style.display = "block"; // Show the sidebar
+        chatArena.style.display = "none";
+        inputChat.style.left = "10%";
+        sidebar.style.width = "100%"; // Show the sidebar
+      } else {
+        chatArena.style.display = "block";
+        chatArena.style.width = "100%";
+        sidebar.style.display = "none"; // Hide the sidebar
+        inputChat.style.left = "";
+      }
+      break;
+
+    case width >= 768 && width < 1024: // Tablet
+    if (sidebar.style.display === "none" || sidebar.style.display === "") {
+      sidebar.style.display = "block"; // Show the sidebar
+      inputChat.style.left = "15%";
+      sidebar.style.width = "30%"; // Show the sidebar
+      chatArena.style.width = "70%";
+    } else {
+      chatArena.style.display = "block";
+      chatArena.style.width = "100%";
+      sidebar.style.display = "none"; // Hide the sidebar
+      inputChat.style.left = "0%";
+    }
+      break;
+
+    default: // Desktop/Web
+      if (sidebar.style.display === "none") {
+        sidebar.style.display = "block"; // Show the sidebar
+        inputChat.style.left = "10%";
+        chatArena.style.width = "80%";
+      } else {
+        sidebar.style.display = "none"; // Hide the sidebar
+        inputChat.style.left = "0%";
+        chatArena.style.width = "100%";
+      }
+      break;
   }
 }
 
@@ -455,19 +537,6 @@ const renderResponseContent = (response) => {
   const codeBlockRegex = /```(\w+)?\n([\s\S]*?)```/g;
   const inlineCodeRegex = /`([^`]+)`/g;
 
-  const escapeHTML = (str) => {
-    return str.replace(/[&<>"']/g, (match) => {
-      const escapeChars = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-      };
-      return escapeChars[match];
-    });
-  };
-
   const tempElement = document.createElement("div");
   let lastIndex = 0;
 
@@ -484,7 +553,7 @@ const renderResponseContent = (response) => {
     codeElement.className = `language-${
       language ? language.trim() : "plaintext"
     }`;
-    codeElement.textContent = code.trim();
+    codeElement.textContent = code;
     pre.appendChild(codeElement);
     tempElement.appendChild(pre);
 
@@ -497,10 +566,12 @@ const renderResponseContent = (response) => {
     tempElement.appendChild(textNode);
   }
 
-  let finalHTML = tempElement.innerHTML;
-  finalHTML = finalHTML.replace(inlineCodeRegex, (match, code) => {
-    return `<code>${escapeHTML(code.trim())}</code>`;
-  });
+  let finalHTML = tempElement.innerHTML.replace(
+    inlineCodeRegex,
+    (match, code) => {
+      return `<code>${code}</code>`;
+    }
+  );
 
   finalHTML = finalHTML.replace(/\n/g, "<br>");
 
