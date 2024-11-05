@@ -51,11 +51,11 @@ html {
   cursor: pointer;
   color: white;
 }
-ol{
-  padding-left:20px
+ol {
+  padding-left: 20px;
 }
-ul{
-  padding-left:25px
+ul {
+  padding-left: 30px;
 }
 .sidebar {
   width: 20%;
@@ -525,8 +525,12 @@ body.hide-header .header {
 }
 
 @media (max-width: 768px) {
-  .header .title{
-   font-size: 30px;
+  .chat-input {
+    position: fixed;
+    bottom: 0;
+  }
+  .header .title {
+    font-size: 30px;
   }
   .header .subtitle {
     font-size: 30px;
@@ -549,6 +553,7 @@ body.hide-header .header {
   .chat-messages {
     padding-left: 10px;
     padding-right: 10px;
+    max-height: 70vh;
   }
 }
 
@@ -562,6 +567,7 @@ body.hide-header .header {
   .chat-area {
     width: 100%;
   }
+
 }
 
 .chat-message.model {
