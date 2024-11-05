@@ -1,6 +1,5 @@
 //chatSessionController
 const { validationResult } = require("express-validator");
-const User = require("../models/user");
 const errorHandler = require("../utils/errorHandler");
 const dotenv = require("dotenv");
 const ChatSession = require("../models/ChatSession");
@@ -136,4 +135,47 @@ module.exports.deleteChatSession = async (req, res) => {
   } catch (e) {
     console.error("Error:", e);
     return res.status(404).json({ message: "failed deleteChatSession" });  }
+};
+
+
+module.exports.exportData = async (req, res) => {
+  try {
+    // Get the user's information
+    const user = await User.findById(req.user.userId); // Assuming req.user.userId holds the user's ID
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const chatSessions = await ChatSession.find({ userId: req.user.userId }); // Get chat sessions for the authenticated user
+
+    if (!chatSessions.length) {
+      return res.status(404).json({ message: "No chat sessions found" });
+    }
+
+    // Sort chat sessions by lastChatTime from newest to oldest
+    chatSessions.sort((a, b) => new Date(b.lastChatTime) - new Date(a.lastChatTime));
+
+    // Prepare data for JSON export
+    const exportData = {
+      FullName: user.fullName,
+      email: user.email,
+      chatSessions: chatSessions.map(session => ({
+        sessionId: session._id,
+        sessionName: session.name,
+        lastChatTime: session.lastChatTime,
+        messages: session.messages.map(msg => ({
+          content: msg.content,
+          sender: msg.sender,
+          timestamp: msg.createdAt // Ensure you have a createdAt field in MessageSchema
+        })),
+      })),
+    };
+
+    // Respond with JSON data
+    res.status(200).json(exportData);
+  } catch (e) {
+    console.error("Error exporting data:", e);
+    res.status(500).json({ message: "Failed to export data" });
+  }
 };
