@@ -3,38 +3,40 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-}
-
-body {
+  }
+  
+  body {    
     margin: 0 auto;
     padding: 10px;
     color: #fff;
-    background-image: url('../images/background.jpg');
+    background-image: url("../images/background.jpg");
     background-size: cover;
     background-position: center;
-}
-
-header {
+    box-sizing: border-box;
+  }
+  
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
     width: 100%;
     flex-wrap: wrap;
-}
-
-.logo img {
+  }
+  
+  .logo img {
     width: 205px;
     height: 63px;
-}
-
-nav {
+    justify-content: flex-end;
+  }
+  
+  nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-}
-
-nav button {
+  }
+  
+  nav button {
     width: 192px;
     height: 35.86px;
     padding: 8px 16px;
@@ -43,101 +45,99 @@ nav button {
     color: #fff;
     cursor: pointer;
     margin-left: 10px;
-}
-
-.login-btn {
-    width: 83.07px; 
-    height: 35.86px; 
-    border-radius: 5px; 
-    padding: 8px 16px; 
-    background-color: transparent; 
-    color: #fff; 
-    border: 1.5px solid #fff; 
-    font-family: Poppins, sans-serif; 
-    font-size: 16px; 
-    font-weight: 500; 
-    line-height: 20.16px; 
-    letter-spacing: 0.02em; 
-    text-align: center; 
-    cursor: pointer; 
-    transition: background-color 0.3s, border-color 0.3s; 
-
-}
-
-.login-btn:hover {
-    background-color: #0A4E7C;
-}
-
-.signup-btn {
-    background-color: #042A49;
+  }
+  
+  .login-btn {
+    width: 83.07px;
+    height: 35.86px;
+    border-radius: 5px;
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #fff;
+    border: 1.5px solid #fff;
+    font-family: Poppins, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20.16px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .login-btn:hover {
+    background-color: #0a4e7c;
+  }
+  
+  .signup-btn {
+    background-color: #042a49;
     border: none;
     border-radius: 5px;
-    width: 95.07px;   
-    height: 35.86px;  
-    font-family: Poppins, sans-serif;           
-    font-size: 16px;               
-    font-weight: 500;              
-    line-height: 20.16px;           
-    letter-spacing: 0.02em;      
-    text-align: center;             
-    transition: background-color 0.3s ease; 
-
-}
-
-.signup-btn:hover {
-    background-color: #0A4E7C;
-}
-
-.hero {
+    width: 95.07px;
+    height: 35.86px;
+    font-family: Poppins, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20.16px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .signup-btn:hover {
+    background-color: #0a4e7c;
+  }
+  
+  .hero {
     width: 100%;
-    height: auto; 
+    height: auto;
     text-align: center;
     padding: 40px 20px;
-}
-
-.hero h1 {
-    font-family: 'Outfit', sans-serif;
+  }
+  
+  .hero h1 {
+    font-family: "Outfit", sans-serif;
     font-weight: 500;
     font-size: 42.67px;
     line-height: 53.76px;
-    color: #2179A9;
-}
-
-.hero h1 span {
-    font-family: 'Outfit', sans-serif;
+    color: #2179a9;
+  }
+  
+  .hero h1 span {
+    font-family: "Outfit", sans-serif;
     font-size: 51.2px;
     font-weight: 500;
     line-height: 64.51px;
     text-align: right;
     color: #fff;
-}
-
-.hero p {
+  }
+  
+  .hero p {
     margin: 10px 0;
     width: 100%;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
     text-align: center;
-    color: #8C8C8C;
-}
-
-.hero p span {
+    color: #8c8c8c;
+  }
+  
+  .hero p span {
     color: #fff;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
-}
-
-.get-started-btn {
+  }
+  
+  .get-started-btn {
     width: 177px;
     height: 39px;
     padding: 0;
-    background: #003E6080;
+    background: #003e6080;
     color: #fff;
-    border: 1.5px solid #00679F;
+    border: 1.5px solid #00679f;
     border-radius: 5px;
     font-family: Poppins, sans-serif;
     font-size: 14px;
@@ -146,99 +146,150 @@ nav button {
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-.get-started-btn:hover {
+  }
+  
+  .get-started-btn:hover {
     background: rgba(0, 62, 96, 0.9);
     color: #ffffff;
-}
-
-.chatbots {
-    display: flex; 
-    flex-direction: column; 
+  }
+  
+  .chatbots {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     width: 100%;
     padding: 40px 20px;
     text-align: center;
-}
-
-.chatbots h2 {
-    margin: 0; 
-    width: 100%; 
-    max-width: 975px; 
-    text-align: left; 
-}
-
-.chatbots h2 span {
-    font-family: 'Poppins', sans-serif;
-    font-size: 22px;
+  }
+  
+  .chatbots h2 {
+    margin: 0;
+    width: 100%;
+    max-width: 975px;
+    text-align: center;
+    font-size: 30;
+    margin-bottom: 20px;
+  }
+  
+  .chatbots h2 span {
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
     font-weight: 600;
     line-height: 33px;
     text-align: left;
-    color: #FFFFFF;
-}
-
-.card-container {
+    color: #ffffff;
+  }
+  
+  .card-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     max-width: 974.22px;
     gap: 12px;
     margin: 0 auto;
-}
-
-.card {
+  }
+  
+  .card {
     width: calc(25% - 10px);
-    height: auto; 
+    height: auto;
     border-radius: 11.08px;
-    border-top: 2.67px solid #002D45;
+    border-top: 2.67px solid #002d45;
     padding: 19.69px 9.85px;
-    background: linear-gradient(149.88deg, #011018 37.22%, #001F2F 70.43%, #001622 97.89%, #2179A9 132.38%, #0068A0 150.9%);
-    box-shadow: 3.69px 6.46px 24px 0px #0000001F;
+    background: linear-gradient(
+      149.88deg,
+      #011018 37.22%,
+      #001f2f 70.43%,
+      #001622 97.89%,
+      #2179a9 132.38%,
+      #0068a0 150.9%
+    );
+    box-shadow: 3.69px 6.46px 24px 0px #0000001f;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-}
-
-.card:hover {
+  }
+  
+  .card:hover {
     transform: translateY(-5px);
     box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.card h3 {
+  }
+  
+  .card h3 {
     margin: 10px 0;
-    color: #FFFFFF;
-    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
     font-size: 17.78px;
     font-weight: 600;
     line-height: 26.67px;
     text-align: center;
-}
-
-.card p {
-    color: #B5B5B5;
-    font-family: 'Poppins', sans-serif;
+  }
+  
+  .card p {
+    color: #b5b5b5;
+    font-family: "Poppins", sans-serif;
     font-size: 10.67px;
     font-weight: 500;
     line-height: 16px;
-}
-
-
-@media (max-width: 1024px) {
+  }
+  
+  @media (max-width: 1024px) {
     .card {
-        width: calc(50% - 10px); 
+      width: calc(50% - 8px);
     }
-}
-
-@media (max-width: 768px) {
+    .chatbots h2{
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .card-container{
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 768px) {
     .card {
-        width: calc(100% - 20px); 
-        margin: 10px 0; 
+      width: calc(100% - 20px);
+      margin: 10px 0;
     }
-
+  
     .card-container {
-        flex-direction: column; 
+      flex-direction: column;
     }
-}
-
-
+  }
+  @media (max-width: 450px) {
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .logo {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+      align-items: center;
+      margin-top: 10px;
+    }
+  
+    nav button {
+      width: 80%;
+      margin: 5px 0;
+    }
+    .hero h1{
+      font-size: 35px;
+    }
+    .chatbots h2{
+      text-align: center;
+    }
+    .card-container{
+      align-items: center;
+    }
+  }
+  
