@@ -20,7 +20,6 @@ header {
     align-items: center;
     padding: 10px 0;
     width: 100%;
-    flex-wrap: wrap;
 }
 
 .logo img {
@@ -180,7 +179,7 @@ nav button {
 
 .card-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     max-width: 974.22px;
     gap: 12px;
@@ -188,7 +187,8 @@ nav button {
 }
 
 .card {
-    width: calc(25% - 10px);
+    min-width: 200px;
+    flex:1;
     height: auto; 
     border-radius: 11.08px;
     border-top: 2.67px solid #002D45;
@@ -222,24 +222,5 @@ nav button {
     font-weight: 500;
     line-height: 16px;
 }
-
-
-@media (max-width: 1024px) {
-    .card {
-        width: calc(50% - 10px); 
-    }
-}
-
-@media (max-width: 768px) {
-    .card {
-        width: calc(100% - 20px); 
-        margin: 10px 0; 
-    }
-
-    .card-container {
-        flex-direction: column; 
-    }
-}
-
 
 
