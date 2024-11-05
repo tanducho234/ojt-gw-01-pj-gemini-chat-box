@@ -194,8 +194,10 @@ function addMessage(classNames, message) {
   // Use marked.parse to parse Markdown and set it as HTML with syntax highlighting
   messageContainer.innerHTML = marked.parse(message);
   document.getElementById("chat-messages").appendChild(messageContainer);
-  document.getElementById("chat-messages").scrollTop =
-    document.getElementById("chat-messages").scrollHeight;
+  document.getElementById("chat-messages").scrollTo({
+    top: document.getElementById("chat-messages").scrollHeight,
+    behavior: "smooth",
+  });
 }
 
 suggestions.forEach((suggestion) => {
@@ -209,6 +211,10 @@ suggestions.forEach((suggestion) => {
 
 // Function to send a message
 async function sendMessage() {
+  const suggestionContainer = document.getElementById("suggestion-buttons");
+  if (suggestionContainer) {
+    suggestionContainer.remove();
+  }
   const messageText = input.value.trim();
   console.log(messageText);
   console.log("aaa", sessionId);
@@ -232,21 +238,51 @@ async function sendMessage() {
     submitChatIcon.src = "images/line-md--loading-loop.png";
     submitChatIcon.classList.add("rotate");
 
-    await generateAPIResponse(messageText)
-      .then(async (apiResponse) => {
+    await Promise.all([generateAPIResponse(messageText), fetchSuggestions()])
+      .then(async ([apiResponse, suggestion]) => {
         // Display AI response
         addMessage("model", apiResponse);
         chatHistory.push({ content: apiResponse, sender: "model" });
-        suggestion = await fetchSuggestions();
         console.log("suggestion", suggestion);
+        // Create buttons with proper escaping and validation
         let buttonsHTML = suggestion
-          .map(
-            (question) =>
-              `<button onclick="handleQuestion('${question}')">${question}</button>`
-          )
+          .filter((question) => question && typeof question === "string")
+          .map((question) => {
+            return `
+            <button 
+              style="
+                border-style: dashed;
+                border-color: #0068a0;
+                margin-top: 0;
+                margin-bottom: 5px;
+                padding: 10px;
+                cursor: pointer;
+
+              "
+              class="suggestion-btn chat-message user" 
+              onclick="handleQuestion('${question}')"
+            >
+              ${question}
+            </button>
+          `;
+          })
           .join("");
 
-        document.getElementById("questionContainer").innerHTML = buttonsHTML;
+        // Create suggestion container with error handling
+        const suggestionContainer = document.createElement("div");
+        suggestionContainer.id = "suggestion-buttons";
+        suggestionContainer.className = "suggestion-container";
+
+        if (buttonsHTML) {
+          suggestionContainer.innerHTML = buttonsHTML;
+          document
+            .getElementById("chat-messages")
+            ?.appendChild(suggestionContainer);
+          // document.getElementById("chat-messages").scrollTo({
+          //   top: document.getElementById("chat-messages").scrollHeight,
+          //   behavior: "smooth",
+          // });
+        }
       })
       .catch((error) => {
         console.error("Error generating API response:", error);
@@ -525,16 +561,20 @@ const fetchSuggestions = async () => {
       parts: [{ text: message.content }],
     })),
   };
+
+  apiHistory.contents.pop();
   apiHistory.contents.push({
     role: "user",
     parts: [
       {
-        text: "Suggest 3 questions that the user is interested in based on the content of the conversation in the mindset of the user asking. Ask the questions in the language the user uses.",
+        text: "Read the previous messages in this chat and suggest three shorts questions I could ask next to continue the conversation or get more information. Ask the questions in the language the user uses.",
       },
     ],
   });
 
   try {
+    console.log("suggest sent:", apiHistory);
+
     const response = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -544,13 +584,20 @@ const fetchSuggestions = async () => {
     const data = await response.json();
     if (!response.ok) throw new Error(data.error.message);
     apiResponse = data?.candidates[0].content.parts[0].text;
+    console.log("suggestapiResponse", apiResponse);
 
-    const questionPattern = /\*\*\s*([^*]+?)\?\s*\*\*/g;
-    const questions = [];
-    let match;
-    while ((match = questionPattern.exec(apiResponse)) !== null) {
-      questions.push(match[1] + "?");
-    }
+    const lines = apiResponse.split("\n");
+
+    // Extract text inside double asterisks on each line
+    let questions = lines
+      .filter((line) => line.includes("**")) // Keep only lines that contain '**'
+      .map((line) => {
+        // Extract the text within the first pair of asterisks
+        const start = line.indexOf("**") + 2;
+        const end = line.indexOf("**", start);
+        return line.slice(start, end).replace(/"/g, ""); // Remove surrounding quotes if present
+      });
+    questions.sort((a, b) => b.length - a.length);
     console.log("ques", questions);
 
     return questions;

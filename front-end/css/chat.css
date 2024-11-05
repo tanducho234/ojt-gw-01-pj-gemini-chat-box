@@ -11,7 +11,6 @@ html {
   font-family: Arial, Helvetica, sans-serif;
   overflow-y: hidden;
   overflow-x: hidden;
-
 }
 
 .container {
@@ -34,7 +33,7 @@ html {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease, transform 0.2s ease;
   cursor: pointer;
-  height: 80vh;
+  height: 70vh;
   box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
 }
 #chat-sessions li {
@@ -52,9 +51,12 @@ html {
   cursor: pointer;
   color: white;
 }
-
-
-
+ol {
+  padding-left: 20px;
+}
+ul {
+  padding-left: 30px;
+}
 .sidebar {
   width: 20%;
   background: radial-gradient(circle, #0a0c11 0%, #0f121a 50%, #1a2735 100%);
@@ -147,22 +149,38 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .chat-input textarea {
+  font-family: Arial, Helvetica, sans-serif;
+
   overflow: hidden; /* Hide the scrollbar */
   resize: none; /* Prevent manual resizing */
-  padding: 15px 60px 15px 20px;
-  width: 60%;
+  padding: 15px 60px 15px 25px;
+  width: 70%;
   height: 100%;
   border: 2px solid #0068a0;
+  border-right: 0px;
   background: #001622;
-  border-radius: 25px;
+  border-radius: 25px 0 0 25px;
   color: #fff;
   font-size: 15px;
 }
+.chat-input textarea:focus {
+  outline: none;
+}
 
+#sendMessageBtn {
+  border: 2px solid #0068a0;
+  background: #001622;
+  border-radius: 0 25px 25px 0;
+  border-left: 0px;
 
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 .chat-input button {
   color: #fff;
   outline: none;
@@ -277,13 +295,13 @@ aside ul button {
   color: #333; /* Icon color */
 }
 
-.new-chat-btn{
+.new-chat-btn {
   padding-top: 50px;
   padding-bottom: 10px;
   justify-content: space-between;
 }
-.new-chat-btn h1{
-  flex:1;
+.new-chat-btn h1 {
+  flex: 1;
 }
 
 ul div li {
@@ -507,12 +525,24 @@ body.hide-header .header {
 }
 
 @media (max-width: 768px) {
-
+  .chat-input {
+    position: fixed;
+    bottom: 0;
+  }
+  .header .title {
+    font-size: 30px;
+  }
+  .header .subtitle {
+    font-size: 30px;
+  }
+  .chat-header {
+    padding-right: 10px;
+  }
   .suggestion-list {
     display: none;
   }
   .sidebar {
-    display: none ;
+    display: none;
   }
   .chat-area {
     width: 100%;
@@ -523,6 +553,7 @@ body.hide-header .header {
   .chat-messages {
     padding-left: 10px;
     padding-right: 10px;
+    max-height: 70vh;
   }
 }
 
@@ -536,8 +567,15 @@ body.hide-header .header {
   .chat-area {
     width: 100%;
   }
+
 }
 
-#sendMessageBtn{
-  transform: translate(-50px);
+.chat-message.model {
+  line-height: 30px;
+}
+
+
+#suggestion-buttons{
+  display: flex;
+  flex-direction: column;
 }
