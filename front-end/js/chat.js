@@ -231,7 +231,7 @@ async function sendMessage() {
     // Change image to loading state
     submitChatIcon.src = "images/line-md--loading-loop.png";
     submitChatIcon.classList.add("rotate");
-
+    document.getElementById('user-input').placeholder = 'Please wait...';    
     await generateAPIResponse(messageText)
       .then((apiResponse) => {
         // Display AI response
@@ -246,6 +246,7 @@ async function sendMessage() {
         // Restore original image and remove rotation
         submitChatIcon.src = "images/ion--arrow-forward-circle.png";
         submitChatIcon.classList.remove("rotate");
+        document.getElementById('user-input').placeholder = 'Type your message';    
 
         // Re-enable the button
         sendMessageButton.disabled = false;

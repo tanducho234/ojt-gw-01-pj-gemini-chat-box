@@ -34,7 +34,7 @@ html {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease, transform 0.2s ease;
   cursor: pointer;
-  height: 80vh;
+  height: 70vh;
   box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
 }
 #chat-sessions li {
@@ -147,22 +147,38 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .chat-input textarea {
+  font-family: Arial, Helvetica, sans-serif;
+
   overflow: hidden; /* Hide the scrollbar */
   resize: none; /* Prevent manual resizing */
-  padding: 15px 60px 15px 20px;
-  width: 60%;
+  padding: 15px 60px 15px 25px;
+  width: 70%;
   height: 100%;
   border: 2px solid #0068a0;
+  border-right: 0px;
   background: #001622;
-  border-radius: 25px;
+  border-radius: 25px 0 0 25px;
   color: #fff;
   font-size: 15px;
 }
+.chat-input textarea:focus {
+  outline: none;
+}
 
+#sendMessageBtn{
+  border: 2px solid #0068a0;
+  background: #001622;
+  border-radius: 0 25px 25px 0;
+  border-left: 0px;
 
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 .chat-input button {
   color: #fff;
   outline: none;
@@ -507,7 +523,9 @@ body.hide-header .header {
 }
 
 @media (max-width: 768px) {
-
+  .chat-header{
+    padding-right: 10px;
+  }
   .suggestion-list {
     display: none;
   }
@@ -536,8 +554,4 @@ body.hide-header .header {
   .chat-area {
     width: 100%;
   }
-}
-
-#sendMessageBtn{
-  transform: translate(-50px);
 }
