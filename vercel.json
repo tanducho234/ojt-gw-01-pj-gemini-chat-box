@@ -12,7 +12,7 @@
     ],
     "routes": [
       {
-        "src": "/back-end/(.*)",
+        "src": "/front-end/(.*)",
         "dest": "/front-end/$1"
       },
       {

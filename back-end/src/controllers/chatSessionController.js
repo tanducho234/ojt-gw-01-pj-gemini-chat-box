@@ -3,6 +3,7 @@ const { validationResult } = require("express-validator");
 const errorHandler = require("../utils/errorHandler");
 const dotenv = require("dotenv");
 const ChatSession = require("../models/ChatSession");
+const User = require("../models/User");
 
 module.exports.getChatSessionById = async (req, res) => {
   try {
