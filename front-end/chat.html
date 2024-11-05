@@ -17,6 +17,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/an-old-hope.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
   </head>
 
   <body>
@@ -28,15 +30,15 @@
       <!-- Sidebar for chat sessions -->
       <aside class="sidebar" id="sidebar">
         <div class="start-chat">
-          <div style="display: flex">
-            <div style="flex: 1"></div>
+          <div class="new-chat-btn"style="display: flex">
+            <h2>Chat Sessions</h2>
             <i
               class="fa fa-pencil-square-o"
               style="font-size: 25px; cursor: pointer"
               onclick="startNewChat()"
             ></i>
           </div>
-          <h2>Chat Sessions</h2>
+          
           <input
             type="text"
             placeholder="Search History..."
@@ -97,12 +99,8 @@
           <!-- Chat messages from history will be displayed here -->
         </div>
         <div class="chat-input" id="chat-input">
-          <input
-            type="text"
-            id="user-input"
-            placeholder="Message Chatbot.."
-            onkeypress="handleEnter(event)"
-          />
+          <textarea id="user-input" placeholder="Type your message" onkeydown="if(event.keyCode == 13 && !event.shiftKey) { event.preventDefault(); sendMessage(); }"></textarea>
+            
           <button id="sendMessageBtn" onclick="sendMessage()">
             <img id="submit-chat-icon"style="height:50px"src="images/ion--arrow-forward-circle.png">
           </button>
@@ -110,6 +108,14 @@
       </section>
     </div>
     <script src="js/chat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.12/marked.min.js"></script>
+      <script>
+      marked.setOptions({
+        highlight: function(code, lang) {
+            const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+            return hljs.highlight(code, { language }).value;
+        }
+      });</script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"

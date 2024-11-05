@@ -24,9 +24,31 @@ const displaySearchResults = (results) => {
 
   // Display each matching chat session as an <li> item
   results.forEach((session) => {
-    const sessionItem = document.createElement("li");
-    sessionItem.textContent = session.name;
-    resultsContainer.appendChild(sessionItem);
+    const sessionElement = document.createElement("div");
+
+    // Create chat session name
+    const nameElement = document.createElement("li");
+    nameElement.textContent = session.name;
+    nameElement.title = session.name; // Tooltip for full name on hover
+    nameElement.onclick = () => {
+      // Redirect to the same page with ?id={_id}
+      window.location.href = `${window.location.pathname}?id=${session._id}`;
+    };
+
+    // Create button
+    const buttonElement = document.createElement("button");
+    buttonElement.textContent = "...";
+    buttonElement.style.cursor = "pointer";
+    buttonElement.style.paddingLeft = "10px"; // Add left padding
+    buttonElement.onclick = (e) => {
+      e.stopPropagation(); // Prevent the click from triggering the session click
+      showContextMenu(e, session._id);
+    };
+
+    // Append elements to session
+    sessionElement.appendChild(nameElement);
+    sessionElement.appendChild(buttonElement);
+    resultsContainer.appendChild(sessionElement);
   });
 };
 
@@ -87,8 +109,8 @@ function showContextMenu(event, sessionId) {
   const contextMenu = document.createElement("div");
   contextMenu.className = "context-menu"; // Add a class for styling
   contextMenu.style.position = "absolute";
-  contextMenu.style.top = `${event.clientY}px`;
-  contextMenu.style.left = `${event.clientX}px`;
+  contextMenu.style.top = `${event.clientY - 50}px`;
+  contextMenu.style.left = `${event.clientX - 150}px`;
   contextMenu.innerHTML = `
         <div class="context-menu-item" onclick="renameChatSession('${sessionId}')">
             <i class="fa fa-pencil"></i> Rename
@@ -141,19 +163,11 @@ async function deleteChatSession(sessionIdAboutToDelete) {
 }
 
 // Select the chat messages container
-const chatMessages = document.getElementById("chat-messages");
 
 // Function to load and display chat history
 function loadChatHistory() {
   chatHistory.forEach((message) => {
-    if (message.sender === "model") {
-      // Format the model's response content with HTML
-      const formattedContent = renderResponseContent(message.content);
-      addMessage(message.sender, formattedContent, true); // Pass true to indicate HTML
-    } else {
-      // For other senders, display content as is
-      addMessage(message.sender, message.content, false); // Pass false to indicate plain text
-    }
+    addMessage(message.sender, message.content); // Pass false to indicate plain text
   });
 }
 
@@ -172,20 +186,16 @@ function typeWriter(element, content, speed) {
 }
 
 // Function to add a message to the chat area
-function addMessage(sender, messageText, isHTML = false) {
-  const messageElement = document.createElement("div");
-  messageElement.classList.add("chat-message", sender);
-  const formattedContent = renderResponseContent(messageText);
-  if (isHTML) {
-    // If content is HTML, use innerHTML
-    messageElement.innerHTML = messageText;
-  } else {
-    // For plain text, convert line breaks to <br> elements and use innerHTML safely
-    messageElement.textContent = formattedContent;
-  }
+function addMessage(classNames, message) {
+  const messageContainer = document.createElement("div");
+  messageContainer.classList.add("chat-message", classNames);
 
-  chatMessages.appendChild(messageElement);
-  chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the bottom
+  // Use marked.parse to parse Markdown and set it as HTML with syntax highlighting
+  messageContainer.innerHTML = marked.parse(message);
+  console.log("messageContainer", messageContainer);
+  document.getElementById("chat-messages").appendChild(messageContainer);
+  document.getElementById("chat-messages").scrollTop =
+    document.getElementById("chat-messages").scrollHeight;
 }
 
 suggestions.forEach((suggestion) => {
@@ -207,7 +217,9 @@ async function sendMessage() {
   }
   if (messageText) {
     // Display user message
-    addMessage("user", messageText, false);
+    console.log("messageText", messageText);
+    chatHistory.push({ content: messageText, sender: "user" });
+    addMessage("user", messageText);
 
     // Clear input field
     input.value = "";
@@ -220,24 +232,36 @@ async function sendMessage() {
     submitChatIcon.src = "images/line-md--loading-loop.png";
     submitChatIcon.classList.add("rotate");
 
-    try {
-      const apiResponse = await generateAPIResponse(messageText);
-      const formatMessages = renderResponseContent(apiResponse);
-      // Display AI response
-      addMessage("model", formatMessages, true);
-    } catch (error) {
-      console.error("Error generating API response:", error);
-      // Optionally handle error
-    } finally {
-      // Restore original image and remove rotation
-      submitChatIcon.src = "images/ion--arrow-forward-circle.png";
-      submitChatIcon.classList.remove("rotate");
+    await generateAPIResponse(messageText)
+      .then((apiResponse) => {
+        // Display AI response
+        addMessage("model", apiResponse);
+        chatHistory.push({ content: apiResponse, sender: "model" });
+      })
+      .catch((error) => {
+        console.error("Error generating API response:", error);
+        // Optionally handle error
+      })
+      .finally(() => {
+        // Restore original image and remove rotation
+        submitChatIcon.src = "images/ion--arrow-forward-circle.png";
+        submitChatIcon.classList.remove("rotate");
 
-      // Re-enable the button
-      sendMessageButton.disabled = false;
-      input.disabled = false;
-      input.focus();
-    }
+        // Re-enable the button
+        sendMessageButton.disabled = false;
+        input.disabled = false;
+        input.focus();
+        if (sessionId) {
+          const sessionIndex = chatSessions.findIndex(
+            (s) => s._id === sessionId
+          );
+          if (sessionIndex > 0) {
+            const session = chatSessions.splice(sessionIndex, 1)[0];
+            chatSessions.unshift(session);
+          }
+          loadChatSessions();
+        }
+      });
   }
 }
 
@@ -259,7 +283,6 @@ window.onload = async () => {
 function toggleSidebar() {
   console.log("toggleSidebar()");
   const sidebar = document.getElementById("sidebar");
-  const inputChat = document.getElementById("chat-input");
   const chatArena = document.getElementById("chat-area");
 
   // Toggle the display style between 'none' and 'block'
@@ -280,40 +303,38 @@ function toggleSidebar() {
     case width < 768: // Mobile
       if (sidebar.style.display === "none" || sidebar.style.display === "") {
         sidebar.style.display = "block"; // Show the sidebar
-        chatArena.style.display = "none";
-        inputChat.style.left = "10%";
         sidebar.style.width = "100%"; // Show the sidebar
+        chatArena.style.display = "none";
       } else {
-        chatArena.style.display = "block";
+        chatArena.style.display = "flex";
         chatArena.style.width = "100%";
         sidebar.style.display = "none"; // Hide the sidebar
-        inputChat.style.left = "";
       }
       break;
 
     case width >= 768 && width < 1024: // Tablet
-    if (sidebar.style.display === "none" || sidebar.style.display === "") {
-      sidebar.style.display = "block"; // Show the sidebar
-      inputChat.style.left = "15%";
-      sidebar.style.width = "30%"; // Show the sidebar
-      chatArena.style.width = "70%";
-    } else {
-      chatArena.style.display = "block";
-      chatArena.style.width = "100%";
-      sidebar.style.display = "none"; // Hide the sidebar
-      inputChat.style.left = "0%";
-    }
+      if (sidebar.style.display === "none" || sidebar.style.display === "") {
+        sidebar.style.display = "block"; // Show the sidebar
+        sidebar.style.width = "30%"; // Show the sidebar
+        chatArena.style.width = "70%";
+      } else {
+        chatArena.style.display = "flex";
+        chatArena.style.width = "100%";
+        sidebar.style.display = "none"; // Hide the sidebar
+      }
       break;
 
     default: // Desktop/Web
       if (sidebar.style.display === "none") {
         sidebar.style.display = "block"; // Show the sidebar
-        inputChat.style.left = "10%";
         chatArena.style.width = "80%";
+        sidebar.style.width = "20%";
+
+        chatArena.style.display = "flex";
       } else {
         sidebar.style.display = "none"; // Hide the sidebar
-        inputChat.style.left = "0%";
         chatArena.style.width = "100%";
+        chatArena.style.display = "flex";
       }
       break;
   }
@@ -449,17 +470,28 @@ const API_KEY = "AIzaSyBdYLdODJARjAxYlBcuwkieajDcZrnUYA0";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
 
 const generateAPIResponse = async (messageText) => {
-  let apiHistory = { contents: [] };
-  if (sessionId) {
-    const apiData = await fetchChatHistory(sessionId);
-    apiHistory = formatMessages(apiData);
-  }
+  let apiResponse = "";
+  console.log("chatHistory", chatHistory);
+  let apiHistory = {
+    contents: chatHistory.map((message) => ({
+      role: message.sender,
+      parts: [{ text: message.content }],
+    })),
+  };
+
+  console.log("chatHistory", apiHistory);
+  // alert("here")
+  // if (sessionId) {
+  //   alert("here");
+  //   // const apiData = await fetchChatHistory(sessionId);
+  //   apiHistory = formatMessages(chatHistory);
+  // }
 
   try {
-    apiHistory.contents.push({
-      role: "user",
-      parts: [{ text: messageText }],
-    });
+    // apiHistory.contents.push({
+    //   role: "user",
+    //   parts: [{ text: messageText }],
+    // });
 
     console.log("User message sent:", apiHistory);
 
@@ -470,27 +502,17 @@ const generateAPIResponse = async (messageText) => {
     });
 
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error.message);
+    console.log("API response data:", data);
 
-    const apiResponse = data?.candidates[0].content.parts[0].text.replace(
-      /\*\*(.*?)\*\*/g,
-      "$1"
-    );
-
-    console.log("répon", apiResponse);
+    apiResponse = data?.candidates[0].content.parts[0].text;
+    console.log("API response:", apiResponse);
 
     saveChatHistoryToDB(messageText, apiResponse);
-    // fetchSuggestions();
-    return apiResponse;
+    return apiResponse; // Return the response here
   } catch (error) {
-    // textElement.innerText = error.message;
-    // textElement.parentElement.closest(".message").classList.add("error");
-    console.log("error");
+    console.error("Error:", error);
+    throw error; // Throw the error to be caught by the calling function
   }
-  //   finally {
-  //     isResponseGenerating = false;
-  //     messageText.classList.remove("loading");
-  //   }
 };
 
 const fetchSuggestions = async () => {
@@ -532,74 +554,6 @@ const fetchSuggestions = async () => {
     textElement.parentElement.closest(".message").classList.add("error");
   }
 };
-
-const renderResponseContent = (response) => {
-  const codeBlockRegex = /```(\w+)?\n([\s\S]*?)```/g;
-  const inlineCodeRegex = /`([^`]+)`/g;
-
-  const tempElement = document.createElement("div");
-  let lastIndex = 0;
-
-  response.replace(codeBlockRegex, (match, language, code, offset) => {
-    if (offset > lastIndex) {
-      const textNode = document.createTextNode(
-        response.slice(lastIndex, offset)
-      );
-      tempElement.appendChild(textNode);
-    }
-
-    const pre = document.createElement("pre");
-    const codeElement = document.createElement("code");
-    codeElement.className = `language-${
-      language ? language.trim() : "plaintext"
-    }`;
-    codeElement.textContent = code;
-    pre.appendChild(codeElement);
-    tempElement.appendChild(pre);
-
-    lastIndex = offset + match.length;
-  });
-
-  if (lastIndex < response.length) {
-    const remainingText = response.slice(lastIndex);
-    const textNode = document.createTextNode(remainingText);
-    tempElement.appendChild(textNode);
-  }
-
-  let finalHTML = tempElement.innerHTML.replace(
-    inlineCodeRegex,
-    (match, code) => {
-      return `<code>${code}</code>`;
-    }
-  );
-
-  finalHTML = finalHTML.replace(/\n/g, "<br>");
-
-  return finalHTML;
-};
-
-function formatMessages(input) {
-  const output = {
-    contents: [],
-  };
-
-  const messageMap = {
-    user: { role: "user", parts: [] },
-    model: { role: "model", parts: [] },
-  };
-
-  input.forEach((message) => {
-    const { content, sender, sessionId } = message;
-    if (messageMap[sender]) {
-      messageMap[sender].parts.push({ text: content });
-    }
-  });
-
-  output.contents.push(messageMap.user);
-  output.contents.push(messageMap.model);
-
-  return output;
-}
 
 // Array of suggestions
 const promtSuggestions = [
