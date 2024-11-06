@@ -6,6 +6,7 @@ const submitChatIcon = document.getElementById("submit-chat-icon");
 const sendMessageButton = document.getElementById("sendMessageBtn");
 
 // Sample chat history array
+let suggestion = [];
 let chatHistory = [];
 let chatSessions = [];
 let sessionId = "";
@@ -192,10 +193,11 @@ function addMessage(classNames, message) {
 
   // Use marked.parse to parse Markdown and set it as HTML with syntax highlighting
   messageContainer.innerHTML = marked.parse(message);
-  console.log("messageContainer", messageContainer);
   document.getElementById("chat-messages").appendChild(messageContainer);
-  document.getElementById("chat-messages").scrollTop =
-    document.getElementById("chat-messages").scrollHeight;
+  document.getElementById("chat-messages").scrollTo({
+    top: document.getElementById("chat-messages").scrollHeight,
+    behavior: "smooth",
+  });
 }
 
 suggestions.forEach((suggestion) => {
@@ -209,6 +211,10 @@ suggestions.forEach((suggestion) => {
 
 // Function to send a message
 async function sendMessage() {
+  const suggestionContainer = document.getElementById("suggestion-buttons");
+  if (suggestionContainer) {
+    suggestionContainer.remove();
+  }
   const messageText = input.value.trim();
   console.log(messageText);
   console.log("aaa", sessionId);
@@ -232,11 +238,53 @@ async function sendMessage() {
     submitChatIcon.src = "images/line-md--loading-loop.png";
     submitChatIcon.classList.add("rotate");
     document.getElementById('user-input').placeholder = 'Please wait...';    
-    await generateAPIResponse(messageText)
-      .then((apiResponse) => {
+
+    await Promise.all([generateAPIResponse(messageText), fetchSuggestions()])
+      .then(async ([apiResponse, suggestion]) => {
+
         // Display AI response
         addMessage("model", apiResponse);
         chatHistory.push({ content: apiResponse, sender: "model" });
+        console.log("suggestion", suggestion);
+        // Create buttons with proper escaping and validation
+        let buttonsHTML = suggestion
+          .filter((question) => question && typeof question === "string")
+          .map((question) => {
+            return `
+            <button 
+              style="
+                border-style: dashed;
+                border-color: #0068a0;
+                margin-top: 0;
+                margin-bottom: 5px;
+                padding: 10px;
+                cursor: pointer;
+
+              "
+              class="suggestion-btn chat-message user" 
+              onclick="handleQuestion('${question}')"
+            >
+              ${question}
+            </button>
+          `;
+          })
+          .join("");
+
+        // Create suggestion container with error handling
+        const suggestionContainer = document.createElement("div");
+        suggestionContainer.id = "suggestion-buttons";
+        suggestionContainer.className = "suggestion-container";
+
+        if (buttonsHTML) {
+          suggestionContainer.innerHTML = buttonsHTML;
+          document
+            .getElementById("chat-messages")
+            ?.appendChild(suggestionContainer);
+          // document.getElementById("chat-messages").scrollTo({
+          //   top: document.getElementById("chat-messages").scrollHeight,
+          //   behavior: "smooth",
+          // });
+        }
       })
       .catch((error) => {
         console.error("Error generating API response:", error);
@@ -264,6 +312,12 @@ async function sendMessage() {
         }
       });
   }
+}
+
+function handleQuestion(question) {
+  const userMessage = question;
+  input.value = userMessage;
+  sendMessage();
 }
 
 // Load chat history on page load
@@ -472,7 +526,6 @@ const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-
 
 const generateAPIResponse = async (messageText) => {
   let apiResponse = "";
-  console.log("chatHistory", chatHistory);
   let apiHistory = {
     contents: chatHistory.map((message) => ({
       role: message.sender,
@@ -481,19 +534,8 @@ const generateAPIResponse = async (messageText) => {
   };
 
   console.log("chatHistory", apiHistory);
-  // alert("here")
-  // if (sessionId) {
-  //   alert("here");
-  //   // const apiData = await fetchChatHistory(sessionId);
-  //   apiHistory = formatMessages(chatHistory);
-  // }
 
   try {
-    // apiHistory.contents.push({
-    //   role: "user",
-    //   parts: [{ text: messageText }],
-    // });
-
     console.log("User message sent:", apiHistory);
 
     const response = await fetch(API_URL, {
@@ -503,10 +545,8 @@ const generateAPIResponse = async (messageText) => {
     });
 
     const data = await response.json();
-    console.log("API response data:", data);
 
     apiResponse = data?.candidates[0].content.parts[0].text;
-    console.log("API response:", apiResponse);
 
     saveChatHistoryToDB(messageText, apiResponse);
     return apiResponse; // Return the response here
@@ -517,19 +557,26 @@ const generateAPIResponse = async (messageText) => {
 };
 
 const fetchSuggestions = async () => {
-  let apiHistory = { contents: [] };
-  const apiData = await fetchChatHistory(sessionId);
-  apiHistory = formatMessages(apiData);
+  let apiResponse = "";
+  let apiHistory = {
+    contents: chatHistory.map((message) => ({
+      role: message.sender,
+      parts: [{ text: message.content }],
+    })),
+  };
+
+  apiHistory.contents.pop();
+  apiHistory.contents.push({
+    role: "user",
+    parts: [
+      {
+        text: "Read the previous messages in this chat and suggest three shorts questions I could ask next to continue the conversation or get more information. Ask the questions in the language the user uses.",
+      },
+    ],
+  });
 
   try {
-    apiHistory.contents.push({
-      role: "user",
-      parts: [
-        {
-          text: "Give me 3 searchable title suggestions with the content of the chat",
-        },
-      ],
-    });
+    console.log("suggest sent:", apiHistory);
 
     const response = await fetch(API_URL, {
       method: "POST",
@@ -539,20 +586,27 @@ const fetchSuggestions = async () => {
 
     const data = await response.json();
     if (!response.ok) throw new Error(data.error.message);
+    apiResponse = data?.candidates[0].content.parts[0].text;
+    console.log("suggestapiResponse", apiResponse);
 
-    const suggestions = [];
-    data.candidates.forEach((candidate) => {
-      const suggestion = candidate.content.parts[0].text.replace(
-        /\*\*(.*?)\*\*/g,
-        "$1"
-      );
-      suggestions.push(suggestion);
-    });
-    console.log("suggest", suggestions);
-    return suggestions;
+    const lines = apiResponse.split("\n");
+
+    // Extract text inside double asterisks on each line
+    let questions = lines
+      .filter((line) => line.includes("**")) // Keep only lines that contain '**'
+      .map((line) => {
+        // Extract the text within the first pair of asterisks
+        const start = line.indexOf("**") + 2;
+        const end = line.indexOf("**", start);
+        return line.slice(start, end).replace(/"/g, ""); // Remove surrounding quotes if present
+      });
+    questions.sort((a, b) => b.length - a.length);
+    console.log("ques", questions);
+
+    return questions;
   } catch (error) {
-    textElement.innerText = error.message;
-    textElement.parentElement.closest(".message").classList.add("error");
+    console.error("Error:", error);
+    throw error;
   }
 };
 
