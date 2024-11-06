@@ -250,6 +250,8 @@ async function sendMessage() {
         let buttonsHTML = suggestion
           .filter((question) => question && typeof question === "string")
           .map((question) => {
+            let escapedQuestion = question.replace(/'/g, "\\'");
+
             return `
             <button 
               style="
@@ -262,7 +264,7 @@ async function sendMessage() {
 
               "
               class="suggestion-btn chat-message user" 
-              onclick="handleQuestion('${question}')"
+              onclick="handleQuestion('${escapedQuestion}')"
             >
               ${question}
             </button>
@@ -545,6 +547,7 @@ const generateAPIResponse = async (messageText) => {
     });
 
     const data = await response.json();
+    console.log("res from api", data);
 
     apiResponse = data?.candidates[0].content.parts[0].text;
 
@@ -570,7 +573,7 @@ const fetchSuggestions = async () => {
     role: "user",
     parts: [
       {
-        text: "Read the previous messages in this chat and suggest three shorts questions I could ask next to continue the conversation or get more information. Ask the questions in the language the user uses.",
+        text: "Read the previous messages in this chat and suggest three shorts questions I could ask you next to continue the conversation or get more information. Ask the questions in the language the user uses.",
       },
     ],
   });
