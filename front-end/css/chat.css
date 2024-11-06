@@ -567,7 +567,7 @@ body.hide-header .header {
   .chat-area {
     width: 100%;
   }
-
+}
 .chat-message.model {
   line-height: 30px;
 }
